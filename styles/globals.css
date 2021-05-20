@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input {
+    @apply px-2 mx-auto mb-5 bg-transparent border-2 border-gray-300 rounded-md outline-none w-60;
+  }
+}
