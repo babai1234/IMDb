@@ -6,7 +6,7 @@ const SearchResult = () => {
 
     const Router = useRouter()
     const loadTrailer = () => {
-        Router.push("/Trailer")
+        Router.push("/trailer")
     }
     
     return (

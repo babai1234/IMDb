@@ -4,7 +4,7 @@ import {useState} from 'react'
 import {useRouter} from "next/router"
 import Input from './Input';
 
-const Reviews = () => {
+const Reviews = (review) => {
 
     const [like, setLike] = useState(0)
     const [flag, setFlag] = useState(0)
@@ -13,7 +13,7 @@ const Reviews = () => {
     const unLike = <HiThumbUp onClick={()=>setLike(0)} size="1.3em" className="mx-3.5 cursor-pointer" />
     const go = () =>{
         const url = router.pathname
-        if(url.includes('Reply')){
+        if(url.includes('/Reply')){
             if(flag === 1){
                 setFlag(0)
             }
@@ -32,7 +32,7 @@ const Reviews = () => {
     return (
         <div className="py-4 flex text-gray-50">
             <div className="flex-shrink-0">
-                <Image src="/avatar.png" width="40" height="40" className="rounded-full"/>
+                <Image src={review} width="40" height="40" className="rounded-full"/>
             </div>
             <div className="flex flex-col">
                 <p className="font-bold text-l ml-4">User</p>
