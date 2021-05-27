@@ -4,6 +4,7 @@ import {FunctionComponent, useState} from 'react'
 import {useRouter} from "next/router"
 import Input from './Input';
 import { review } from '@libs/types';
+import Link from 'next/link';
 
 const Review: FunctionComponent<{review: review}> = ({review}) => {
 
@@ -12,21 +13,6 @@ const Review: FunctionComponent<{review: review}> = ({review}) => {
     const router = useRouter();
     const Like = <HiOutlineThumbUp onClick={()=>{setLike(like + 1); review.user_react_status=true}} size="1.3em" className="mx-3.5 cursor-pointer" />
     const unLike = <HiThumbUp onClick={()=>{setLike(like - 1); review.user_react_status=false}} size="1.3em" className="mx-3.5 cursor-pointer" />
-    const go = () =>{
-        const url = router.pathname
-        if(url.includes('/Reply')){
-            if(flag === 1){
-                setFlag(0)
-            }
-            else{
-                setFlag(1)
-            }
-        }
-        else{
-            setFlag(0)
-            router.push('/Reply')
-        }
-    }
     return (
         <div className="py-4 flex text-gray-50">
             <div className="flex-shrink-0">
@@ -42,7 +28,9 @@ const Review: FunctionComponent<{review: review}> = ({review}) => {
                 <div className="flex mt-2">
                     {!review.user_react_status ? Like : unLike}
                     <span>{like ? like : null}</span>
-                    <span className="mx-4 cursor-pointer" onClick={go}>Reply</span>
+                    <Link href={`/Movie/Review/${review.review_id}`}>
+                        <span className="mx-4 cursor-pointer">Reply</span>
+                    </Link>
                 </div>
                 {flag ? <Input /> : null }
             </div>

@@ -3,11 +3,11 @@ import Video from "@components/Video";
 import Review from "@components/Review";
 import StarRating from "@components/StarRating";
 import {AiFillStar} from 'react-icons/ai'
-import { GetStaticProps, NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import Input from '@components/Input';
 import { movie } from "@libs/types";
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const res = await fetch('http://localhost:3001/Movie')
     const movie = await res.json()
     return {

@@ -8,6 +8,15 @@ export type review = {
   user_react_status: boolean
 }
 
+export type reply = {
+  reply_id: number
+  replier_name: string
+  replier_profile_picture: string
+  content: string
+  no_of_reacts: number
+  user_react_status: boolean
+}
+
 export type movie = {
   movie_id: number
   movie_title: string

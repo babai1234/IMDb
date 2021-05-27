@@ -50,7 +50,7 @@
     [
         {
             "reply_id" : 1,
-            "revplier_name" : "Swarnendu Chatterjee",
+            "replier_name" : "Swarnendu Chatterjee",
             "replier_profile_picture" : "/avatar.png",
             "content" : "Very nice movie, would surely rate it 5 stars",
             "no_of_reacts" : 4,
@@ -58,7 +58,7 @@
         },
         {
             "reply_id" : 2,
-            "revplier_name" : "Subham Roy",
+            "replier_name" : "Subham Roy",
             "replier_profile_picture" : "/avatar.png",
             "content" : "Justified",
             "no_of_reacts" : 3,
