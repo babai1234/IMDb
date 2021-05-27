@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "json-server": "json-server db.json -d 2000 -p 3001 -w data/db.json"
+    "json-server": "json-server data/db.json -d 2000 -p 3001 -w data/db.json"
   },
   "dependencies": {
     "next": "10.2.0",

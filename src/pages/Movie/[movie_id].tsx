@@ -5,35 +5,35 @@ import StarRating from "@components/StarRating";
 import {AiFillStar} from 'react-icons/ai'
 import { GetStaticProps, NextPage } from 'next'
 import Input from '@components/Input';
-import { review } from "@libs/types";
+import { movie } from "@libs/types";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await fetch('http://localhost:3000/Review')
-    const reviews = await res.json()
+    const res = await fetch('http://localhost:3001/Movie')
+    const movie = await res.json()
     return {
       props: {
-        reviews,
+        movie,
       },
     }
   }
 
-const Trailer: NextPage<{reviews: review[]}> = ({reviews}) => {
+const trailer: NextPage<{movie: movie[]}> = ({movie}) => {
     return (
         <div className="bg-black">
             <Navbar />
-            <div className="py-7 flex m-auto w-7/12">
-                <div>
+            <div className="py-7 flex m-auto w-10/12 justify-between">
+                <div className="mr-4">
                     <div className="mb-5">
                         <Video />
                     </div>
                     <div  className="border-b-2">
-                        <h1 className="font-medium text-3xl text-gray-50">Introduction to HTML</h1>
+                        <h1 className="font-medium text-3xl text-gray-50">{movie[0].movie_title}</h1>
                         <p className="flex font-medium pt-4 text-gray-50">
-                            <span className="mr-4">Duration: 1hr 27min</span>
-                            <span className="mr-4">Gener: Educational</span>
+                            <span className="mr-4">Duration: {movie[0].movie_length}</span>
+                            <span className="mr-4">Gener: {movie[0].movie_gener}</span>
                             <span className="flex">
-                                <AiFillStar size="1.1em" className="mr-1 text-yellow-400" />
-                                7.5 (3455)
+                                <AiFillStar size="1.1em" className="mr-1 mt-1 text-yellow-400" />
+                                {movie[0].average_rating} ({movie[0].total_ratings})
                             </span>
                         </p>
                         <div className="flex font-medium py-2 text-gray-50">
@@ -43,14 +43,18 @@ const Trailer: NextPage<{reviews: review[]}> = ({reviews}) => {
                     <div className="text-gray-50 py-4">
                         <label className="font-semibold text-3xl">Reviews</label>
                         <Input />
-                        {reviews.map(review => 
-                            <Review review={review} key={review.review_id}/>
-                        )}
+                        {movie[0].Review.map(review => (
+                            <Review review={review} key={review.review_id} />
+                        ))}
                     </div>
+                </div>
+                <div className="w-2/5 ml-4 flex-col lg:block hidden">
+                    <h2 className="text-white font-bold text-3xl">Description</h2>
+                    <p className="text-white">{movie[0].movie_description}</p>
                 </div>
             </div>
         </div>
     );
 }
  
-export default Trailer;
+export default trailer;

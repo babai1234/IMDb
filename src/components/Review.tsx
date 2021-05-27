@@ -7,11 +7,11 @@ import { review } from '@libs/types';
 
 const Review: FunctionComponent<{review: review}> = ({review}) => {
 
-    const [like, setLike] = useState(0)
+    const [like, setLike] = useState(review.no_of_reacts)
     const [flag, setFlag] = useState(0)
     const router = useRouter();
-    const Like = <HiOutlineThumbUp onClick={()=>setLike(1)} size="1.3em" className="mx-3.5 cursor-pointer" />
-    const unLike = <HiThumbUp onClick={()=>setLike(0)} size="1.3em" className="mx-3.5 cursor-pointer" />
+    const Like = <HiOutlineThumbUp onClick={()=>{setLike(like + 1); review.user_react_status=true}} size="1.3em" className="mx-3.5 cursor-pointer" />
+    const unLike = <HiThumbUp onClick={()=>{setLike(like - 1); review.user_react_status=false}} size="1.3em" className="mx-3.5 cursor-pointer" />
     const go = () =>{
         const url = router.pathname
         if(url.includes('/Reply')){
@@ -27,7 +27,6 @@ const Review: FunctionComponent<{review: review}> = ({review}) => {
             router.push('/Reply')
         }
     }
-    console.log({review})
     return (
         <div className="py-4 flex text-gray-50">
             <div className="flex-shrink-0">
@@ -41,7 +40,7 @@ const Review: FunctionComponent<{review: review}> = ({review}) => {
                     </p>
                 </div>
                 <div className="flex mt-2">
-                    {like ? unLike : Like}
+                    {!review.user_react_status ? Like : unLike}
                     <span>{like ? like : null}</span>
                     <span className="mx-4 cursor-pointer" onClick={go}>Reply</span>
                 </div>

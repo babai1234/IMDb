@@ -30,9 +30,6 @@ const Navbar = () => {
       </svg>
       <div className="justify-around hidden w-11/12 mx-3 align-middle md:flex">
         <SearchBar />
-        <Link href="/">
-          <a className="pt-4 font-bold text-white">Wishlist</a>
-        </Link>
         <Link href="/auth">
           <a className="pt-4 font-bold text-white">SignIn</a>
         </Link>
