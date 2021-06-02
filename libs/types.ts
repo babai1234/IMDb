@@ -28,3 +28,12 @@ export type movie = {
   movie_description: string
   Review: review[]
 }
+
+export type result = {
+  id: number
+  movie_title: string
+  movie_poster: string
+  average_rating: number
+  total_ratings: number
+  movie_gener: string
+}

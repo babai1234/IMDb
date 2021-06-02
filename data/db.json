@@ -2,7 +2,7 @@
     "Movie":
     [
         {
-            "movie_id": 1,
+            "id": 1,
             "movie_title": "Introduction to HTML",
             "movie_length": "1hr 27min",
             "average_rating": 4.5,
@@ -12,7 +12,7 @@
             "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
             "Review":[
                 {
-                    "review_id" : 1,
+                    "id" : 1,
                     "reviewer_name" : "Swarnendu Chatterjee",
                     "reviewer_profile_picture" : "/avatar.png",
                     "content" : "Very nice movie, would surely rate it 5 stars",
@@ -20,7 +20,7 @@
                     "user_react_status" : false
                 },
                 {
-                    "review_id" : 2,
+                    "id" : 2,
                     "reviewer_name" : "Subham Roy",
                     "reviewer_profile_picture" : "/avatar.png",
                     "content" : "Nice movie",
@@ -28,7 +28,7 @@
                     "user_react_status" : false
                 },
                 {
-                    "review_id" : 3,
+                    "id" : 3,
                     "reviewer_name" : "Subrata Koley",
                     "reviewer_profile_picture" : "/avatar.png",
                     "content" : "Would surely rate this movie 5 stars",
@@ -36,7 +36,7 @@
                     "user_react_status" : false
                 },
                 {
-                    "review_id" : 4,
+                    "id" : 4,
                     "reviewer_name" : "Sumit Dey",
                     "reviewer_profile_picture" : "/avatar.png",
                     "content" : "Movie was average",
@@ -49,7 +49,7 @@
     "Reply":
     [
         {
-            "reply_id" : 1,
+            "id" : 1,
             "replier_name" : "Swarnendu Chatterjee",
             "replier_profile_picture" : "/avatar.png",
             "content" : "Very nice movie, would surely rate it 5 stars",
@@ -57,13 +57,63 @@
             "user_react_status" : "false"
         },
         {
-            "reply_id" : 2,
+            "id" : 2,
             "replier_name" : "Subham Roy",
             "replier_profile_picture" : "/avatar.png",
             "content" : "Justified",
             "no_of_reacts" : 3,
             "user_react_status" : "false"
         }
+    ],
+    "Search":
+    [
+        {
+            "id": 1,
+            "movie_title": "Avengers",
+            "movie_poster": "/Avengers.jpg",
+            "average_rating": 4,
+            "total_ratings": 3261,
+            "movie_gener": "Action/Thriller"
+        },
+        {
+            "id": 2,
+            "movie_title": "Avengers Infinity War",
+            "movie_poster": "/Avengers-InfinityWar.jpg",
+            "average_rating": 4.5,
+            "total_ratings": 2456,
+            "movie_gener": "Action/Thriller"
+        },
+        {
+            "id": 3,
+            "movie_title": "Iron Man",
+            "movie_poster": "/IronMan.jpg",
+            "average_rating": 3.7,
+            "total_ratings": 3461,
+            "movie_gener": "Action/Thriller"
+        },
+        {
+            "id": 4,
+            "movie_title": "Captain America - Winter Soldier",
+            "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg",
+            "average_rating": 3.5,
+            "total_ratings": 5621,
+            "movie_gener": "Action/Thriller"
+        },
+        {
+            "id": 5,
+            "movie_title": "Avengers - EndGame",
+            "movie_poster": "/Avengers-EndGame.jpg",
+            "average_rating": 4.8,
+            "total_ratings": 4561,
+            "movie_gener": "Action/Thriller"
+        },
+        {
+            "id": 6,
+            "movie_title": "Captain America - CivilWar",
+            "movie_poster": "/CaptainAmerica-CivilWar.jpg",
+            "average_rating": 4.1,
+            "total_ratings": 3456,
+            "movie_gener": "Action/Thriller"
+        }
     ]
 }
-
