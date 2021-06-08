@@ -1,119 +1,127 @@
 {
-    "Movie":
-    [
+  "Movie": [
+    {
+      "id": 1,
+      "movie_title": "Introduction to HTML",
+      "movie_length": "1hr 27min",
+      "average_rating": 4.5,
+      "total_ratings": 3455,
+      "movie_gener": "Educational",
+      "movie_trailer_link": "/sample1.mp4",
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "Review": [
         {
-            "id": 1,
-            "movie_title": "Introduction to HTML",
-            "movie_length": "1hr 27min",
-            "average_rating": 4.5,
-            "total_ratings": 3455,
-            "movie_gener": "Educational",
-            "movie_trailer_link": "/sample1.mp4",
-            "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-            "Review":[
-                {
-                    "id" : 1,
-                    "reviewer_name" : "Swarnendu Chatterjee",
-                    "reviewer_profile_picture" : "/avatar.png",
-                    "content" : "Very nice movie, would surely rate it 5 stars",
-                    "no_of_reacts" : 22,
-                    "user_react_status" : false
-                },
-                {
-                    "id" : 2,
-                    "reviewer_name" : "Subham Roy",
-                    "reviewer_profile_picture" : "/avatar.png",
-                    "content" : "Nice movie",
-                    "no_of_reacts" : 10,
-                    "user_react_status" : false
-                },
-                {
-                    "id" : 3,
-                    "reviewer_name" : "Subrata Koley",
-                    "reviewer_profile_picture" : "/avatar.png",
-                    "content" : "Would surely rate this movie 5 stars",
-                    "no_of_reacts" : 25,
-                    "user_react_status" : false
-                },
-                {
-                    "id" : 4,
-                    "reviewer_name" : "Sumit Dey",
-                    "reviewer_profile_picture" : "/avatar.png",
-                    "content" : "Movie was average",
-                    "no_of_reacts" : 2,
-                    "user_react_status" : false
-                }    
-            ]
+          "id": 1,
+          "reviewer_name": "Swarnendu Chatterjee",
+          "reviewer_profile_picture": "/avatar.png",
+          "content": "Very nice movie, would surely rate it 5 stars",
+          "no_of_reacts": 22,
+          "user_react_status": false
+        },
+        {
+          "id": 2,
+          "reviewer_name": "Subham Roy",
+          "reviewer_profile_picture": "/avatar.png",
+          "content": "Nice movie",
+          "no_of_reacts": 10,
+          "user_react_status": false
+        },
+        {
+          "id": 3,
+          "reviewer_name": "Subrata Koley",
+          "reviewer_profile_picture": "/avatar.png",
+          "content": "Would surely rate this movie 5 stars",
+          "no_of_reacts": 25,
+          "user_react_status": false
+        },
+        {
+          "id": 4,
+          "reviewer_name": "Sumit Dey",
+          "reviewer_profile_picture": "/avatar.png",
+          "content": "Movie was average",
+          "no_of_reacts": 2,
+          "user_react_status": false
         }
-    ],
-    "Reply":
-    [
-        {
-            "id" : 1,
-            "replier_name" : "Swarnendu Chatterjee",
-            "replier_profile_picture" : "/avatar.png",
-            "content" : "Very nice movie, would surely rate it 5 stars",
-            "no_of_reacts" : 4,
-            "user_react_status" : "false"
-        },
-        {
-            "id" : 2,
-            "replier_name" : "Subham Roy",
-            "replier_profile_picture" : "/avatar.png",
-            "content" : "Justified",
-            "no_of_reacts" : 3,
-            "user_react_status" : "false"
-        }
-    ],
-    "Search":
-    [
-        {
-            "id": 1,
-            "movie_title": "Avengers",
-            "movie_poster": "/Avengers.jpg",
-            "average_rating": 4,
-            "total_ratings": 3261,
-            "movie_gener": "Action/Thriller"
-        },
-        {
-            "id": 2,
-            "movie_title": "Avengers Infinity War",
-            "movie_poster": "/Avengers-InfinityWar.jpg",
-            "average_rating": 4.5,
-            "total_ratings": 2456,
-            "movie_gener": "Action/Thriller"
-        },
-        {
-            "id": 3,
-            "movie_title": "Iron Man",
-            "movie_poster": "/IronMan.jpg",
-            "average_rating": 3.7,
-            "total_ratings": 3461,
-            "movie_gener": "Action/Thriller"
-        },
-        {
-            "id": 4,
-            "movie_title": "Captain America - Winter Soldier",
-            "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg",
-            "average_rating": 3.5,
-            "total_ratings": 5621,
-            "movie_gener": "Action/Thriller"
-        },
-        {
-            "id": 5,
-            "movie_title": "Avengers - EndGame",
-            "movie_poster": "/Avengers-EndGame.jpg",
-            "average_rating": 4.8,
-            "total_ratings": 4561,
-            "movie_gener": "Action/Thriller"
-        },
-        {
-            "id": 6,
-            "movie_title": "Captain America - CivilWar",
-            "movie_poster": "/CaptainAmerica-CivilWar.jpg",
-            "average_rating": 4.1,
-            "total_ratings": 3456,
-            "movie_gener": "Action/Thriller"
-        }
-    ]
+      ]
+    }
+  ],
+  "Reply": [
+    {
+      "id": 1,
+      "replier_name": "Swarnendu Chatterjee",
+      "replier_profile_picture": "/avatar.png",
+      "content": "Very nice movie, would surely rate it 5 stars",
+      "no_of_reacts": 4,
+      "user_react_status": "false"
+    },
+    {
+      "id": 2,
+      "replier_name": "Subham Roy",
+      "replier_profile_picture": "/avatar.png",
+      "content": "Justified",
+      "no_of_reacts": 3,
+      "user_react_status": "false"
+    }
+  ],
+  "Search": [
+    {
+      "id": 1,
+      "movie_title": "Avengers",
+      "movie_poster": "/Avengers.jpg",
+      "average_rating": 4,
+      "total_ratings": 3261,
+      "movie_gener": "Action/Thriller"
+    },
+    {
+      "id": 2,
+      "movie_title": "Avengers Infinity War",
+      "movie_poster": "/Avengers-InfinityWar.jpg",
+      "average_rating": 4.5,
+      "total_ratings": 2456,
+      "movie_gener": "Action/Thriller"
+    },
+    {
+      "id": 3,
+      "movie_title": "Iron Man",
+      "movie_poster": "/IronMan.jpg",
+      "average_rating": 3.7,
+      "total_ratings": 3461,
+      "movie_gener": "Action/Thriller"
+    },
+    {
+      "id": 4,
+      "movie_title": "Captain America - Winter Soldier",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg",
+      "average_rating": 3.5,
+      "total_ratings": 5621,
+      "movie_gener": "Action/Thriller"
+    },
+    {
+      "id": 5,
+      "movie_title": "Avengers - EndGame",
+      "movie_poster": "/Avengers-EndGame.jpg",
+      "average_rating": 4.8,
+      "total_ratings": 4561,
+      "movie_gener": "Action/Thriller"
+    },
+    {
+      "id": 6,
+      "movie_title": "Captain America - CivilWar",
+      "movie_poster": "/CaptainAmerica-CivilWar.jpg",
+      "average_rating": 4.1,
+      "total_ratings": 3456,
+      "movie_gener": "Action/Thriller"
+    }
+  ],
+  "Upload": [
+    {
+      "movie_title": "Avengers",
+      "movie_poster": "C:\\fakepath\\Avengers.jpg",
+      "movie_length": 120,
+      "movie_gener": "Action/Thriller",
+      "movie_trailer": "C:\\fakepath\\sample1.mp4",
+      "movie_description": "Very nice movie!!! Recommend others to watch it as well",
+      "id": 1
+    }
+  ]
 }
