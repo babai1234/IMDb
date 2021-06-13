@@ -1,1 +1,6 @@
-1. FIX THE NAVBAR
+1. Use axios
+2. refactor interface names
+3  change interface structure
+4. refactor route names
+5. change searchResult component to movieCard or give it a descriptive name
+6. 

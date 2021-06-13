@@ -3,15 +3,17 @@ import {HiOutlineThumbUp, HiThumbUp} from 'react-icons/hi'
 import {FaTimes} from 'react-icons/fa'
 import {FunctionComponent, useState} from 'react'
 import Input from './Input';
-import { reply } from '@libs/types';
+import { IMovieReviewReply } from '@libs/types';
 
-const Reply: FunctionComponent<{reply: reply}> = ({reply}) => {
+const Reply: FunctionComponent<{reply: IMovieReviewReply}> = ({reply}) => {
 
     const [like, setLike] = useState(reply.no_of_reacts)
     const [flag, setFlag] = useState(0)
-    const Like = <HiOutlineThumbUp onClick={()=>{setLike(like + 1); reply.user_react_status=true}} size="1.3em" className="mx-3.5 cursor-pointer" />
-    const unLike = <HiThumbUp onClick={()=>{setLike(like - 1); reply.user_react_status=false}} size="1.3em" className="mx-3.5 cursor-pointer" />
+    const Like = <HiThumbUp onClick={()=>{setLike(like + 1); reply.user_react_status=true}} size="1.3em" className="mx-3.5 cursor-pointer" />
+    const unLike = <HiOutlineThumbUp onClick={()=>{setLike(like - 1); reply.user_react_status=false}} size="1.3em" className="mx-3.5 cursor-pointer" />
     const cross = <FaTimes className="cursor-pointer mt-1 h-4 w-4" />
+    console.log("Reply" + reply.user_react_status);
+    
     const input_box = () =>{
         if(flag === 1){
             setFlag(0)

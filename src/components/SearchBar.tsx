@@ -1,12 +1,14 @@
+import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import {BiSearch} from 'react-icons/bi'
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
+  const router = useRouter()
 
   const searchHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log(query);
+    router.push("/search/?q="+query)
   };
 
   return (

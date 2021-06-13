@@ -1,6 +1,6 @@
 
-export type review = {
-  review_id: number
+export type IMovieReview = {
+  id: number
   reviewer_name: string
   reviewer_profile_picture: string
   content: string
@@ -8,8 +8,8 @@ export type review = {
   user_react_status: boolean
 }
 
-export type reply = {
-  reply_id: number
+export type IMovieReviewReply = {
+  id: number
   replier_name: string
   replier_profile_picture: string
   content: string
@@ -17,7 +17,7 @@ export type reply = {
   user_react_status: boolean
 }
 
-export type movie = {
+export type IMovie = {
   movie_id: number
   movie_title: string
   movie_length: string
@@ -26,14 +26,18 @@ export type movie = {
   movie_gener: string
   movie_trailer_link: string
   movie_description: string
-  Review: review[]
-}
+  Review: IMovieReview[]
+} 
 
-export type result = {
-  id: number
-  movie_title: string
-  movie_poster: string
-  average_rating: number
-  total_ratings: number
-  movie_gener: string
+// export type IResult = {
+//   id: number
+//   movie_title: string
+//   movie_poster: string
+//   average_rating: number
+//   total_ratings: number
+//   movie_gener: string
+// }
+
+export interface IMovieSearchResult extends Omit<IMovie, "movie_length" |" movie_trailer_link" |"movie_description"|"Review"> {
+  movie_poster:string
 }

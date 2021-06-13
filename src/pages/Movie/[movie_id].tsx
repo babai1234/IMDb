@@ -1,15 +1,17 @@
 import Navbar from "@components/Navbar";
+import axios from "axios";
+import {AiFillStar} from 'react-icons/ai'
+import { GetServerSideProps, NextPage } from 'next'
+
 import Video from "@components/Video";
 import Review from "@components/Review";
 import StarRating from "@components/StarRating";
-import {AiFillStar} from 'react-icons/ai'
-import { GetServerSideProps, NextPage } from 'next'
 import Input from '@components/Input';
-import { movie } from "@libs/types";
+import { IMovie } from "@libs/types";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const res = await fetch('http://localhost:3001/Movie')
-    const movie = await res.json()
+    const res = await axios.get('http://localhost:3001/Movie')
+    const movie: IMovie[] = await res.data
     return {
       props: {
         movie,
@@ -17,10 +19,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
   }
 
-const trailer: NextPage<{movie: movie[]}> = ({movie}) => {
+const trailer: NextPage<{movie: IMovie[]}> = ({movie}) => {
     return (
         <div className="bg-black">
-            <Navbar />
             <div className="py-7 flex m-auto w-10/12 justify-between">
                 <div className="mr-4">
                     <div className="mb-5">
@@ -44,7 +45,7 @@ const trailer: NextPage<{movie: movie[]}> = ({movie}) => {
                         <label className="font-semibold text-3xl">Reviews</label>
                         <Input />
                         {movie[0].Review.map(review => (
-                            <Review review={review} key={review.review_id} />
+                            <Review review={review} key={review.id} />
                         ))}
                     </div>
                 </div>
