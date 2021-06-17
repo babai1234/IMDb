@@ -9,12 +9,15 @@
     "json-server": "json-server data/db.json -d 2000 -p 3001 -w data/db.json"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.5.2",
     "axios": "^0.21.1",
     "next": "^10.2.3",
     "react": "^17.0.2",
     "react-dom": "17.0.2",
     "react-dropzone": "^11.3.2",
-    "react-icons": "^4.2.0"
+    "react-hook-form": "^7.8.8",
+    "react-icons": "^4.2.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.10",
