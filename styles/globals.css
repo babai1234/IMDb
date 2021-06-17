@@ -9,4 +9,17 @@
   .movie {
     @apply flex flex-row w-3/4 py-4 mx-auto space-y-6 transition duration-300 ease-in bg-gray-900 rounded-md cursor-pointer text-gray-50 hover:opacity-75 
   }
+  body {
+    @apply text-white bg-gray-900;
+  }
+  .home-container,
+  .nav-container,
+  .footer-container,
+  .profile-container {
+    padding-right: 12%;
+    padding-left: 12%;
+  }
+  .text-padding {
+    padding-left: 8%;
+  }
 }
