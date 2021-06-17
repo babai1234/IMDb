@@ -7,6 +7,8 @@ const StarRating = () => {
     const rateHandler = (rate: number) => {
         console.log(rate)
         setRating(rate)
+        console.log(rating);
+        
     }
     return (
         <div className="flex pb-2">

@@ -6,11 +6,12 @@ import Input from './Input';
 import { IMovieReviewReply } from '@libs/types';
 
 const Reply: FunctionComponent<{reply: IMovieReviewReply}> = ({reply}) => {
+console.log({reply});
 
     const [like, setLike] = useState(reply.no_of_reacts)
     const [flag, setFlag] = useState(0)
-    const Like = <HiThumbUp onClick={()=>{setLike(like + 1); reply.user_react_status=true}} size="1.3em" className="mx-3.5 cursor-pointer" />
-    const unLike = <HiOutlineThumbUp onClick={()=>{setLike(like - 1); reply.user_react_status=false}} size="1.3em" className="mx-3.5 cursor-pointer" />
+    const Like = <HiOutlineThumbUp onClick={()=>{setLike(like + 1); reply.user_react_status=true}} size="1.3em" className="mx-3.5 cursor-pointer" />
+    const unLike = <HiThumbUp onClick={()=>{setLike(like - 1); reply.user_react_status=false}} size="1.3em" className="mx-3.5 cursor-pointer" />
     const cross = <FaTimes className="cursor-pointer mt-1 h-4 w-4" />
     console.log("Reply" + reply.user_react_status);
     
@@ -23,6 +24,7 @@ const Reply: FunctionComponent<{reply: IMovieReviewReply}> = ({reply}) => {
         }
     }
     return (
+        // http://localhost:3000/Movie/Review/1
         <div className="py-4 flex text-gray-50">
             <div className="flex-shrink-0">
                 <Image src={reply.replier_profile_picture} width="40" height="40" className="rounded-full"/>

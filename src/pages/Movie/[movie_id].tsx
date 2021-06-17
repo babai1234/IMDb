@@ -1,4 +1,3 @@
-import Navbar from "@components/Navbar";
 import axios from "axios";
 import {AiFillStar} from 'react-icons/ai'
 import { GetServerSideProps, NextPage } from 'next'
@@ -10,7 +9,7 @@ import Input from '@components/Input';
 import { IMovie } from "@libs/types";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const res = await axios.get('http://localhost:3001/Movie')
+    const res = await axios.get('http://localhost:3001/movie')
     const movie: IMovie[] = await res.data
     return {
       props: {
@@ -44,7 +43,7 @@ const trailer: NextPage<{movie: IMovie[]}> = ({movie}) => {
                     <div className="text-gray-50 py-4">
                         <label className="font-semibold text-3xl">Reviews</label>
                         <Input />
-                        {movie[0].Review.map(review => (
+                        {movie[0].review.map(review => (
                             <Review review={review} key={review.id} />
                         ))}
                     </div>

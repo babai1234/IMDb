@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { IMovieReview } from '@libs/types';
 
 const Review: FunctionComponent<{review: IMovieReview}> = ({review}) => {
-
+console.log({review})
     const [like, setLike] = useState(review.no_of_reacts)
     const Like = <HiOutlineThumbUp onClick={()=>{setLike(like + 1); review.user_react_status=true}} size="1.3em" className="mx-3.5 cursor-pointer" />
     const unLike = <HiThumbUp onClick={()=>{setLike(like - 1); review.user_react_status=false}} size="1.3em" className="mx-3.5 cursor-pointer" />
@@ -26,7 +26,7 @@ const Review: FunctionComponent<{review: IMovieReview}> = ({review}) => {
                 <div className="flex mt-2">
                     {!review.user_react_status ? Like : unLike}
                     <span>{like ? like : null}</span>
-                    <Link href={`/Movie/Review/${review.id}`}>
+                    <Link href={`/movie/review/${review.id}`}>
                         <span className="mx-4 cursor-pointer">Reply</span>
                     </Link>
                 </div>

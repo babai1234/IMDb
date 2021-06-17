@@ -1,13 +1,15 @@
-import Reply from "@components/Reply";
-import Review from "@components/Review";
 import { IMovieReviewReply, IMovieReview } from "@libs/types";
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 
+import Reply from "@components/Reply";
+import Review from "@components/Review";
+import useSWR from "swr";
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const {id} = context.params
     const [replyResponse, reviewResponse] = await Promise.all([
-        axios.get('http://localhost:3001/Reply')
+        axios.get('http://localhost:3001/reply')
             .then(res => res.data)
             .catch(err => console.log(err.message)),
         // axios.get('http://localhost:3001/Movie/1/Review/'+id)
@@ -23,6 +25,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 const Review_id: NextPage<{reply_res: IMovieReviewReply[], review_res: IMovieReview}> = ({reply_res, review_res}) => {
+
+//     const fetcher = (url: string) => axios(url).then(res => res.data)
+//      const {data} = useSWR<IMovieReviewReply[]>('http://localhost:3001/Reply', fetcher, {initialData: reply_res})
+
     return (
         <div className="bg-black h-screen flex flex-col justify-between">
             {/* <div className="m-auto w-8/12">

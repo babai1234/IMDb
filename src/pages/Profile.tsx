@@ -1,13 +1,10 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import Navbar from "../components/Navbar";
-import Carousels from "../components/Carousels";
-import Footer from "../components/Footer";
+import Carousels from "@components/MovieShort";
+// import Footer from "@components/Footer";
 const Profile = () => {
     return (
         <>
-            <Navbar />
-
             <main className="items-center text-white bg-gray-700 align-center bg-opacity-10 profile-page">
                 <div className="mb-8 lg:w-8/12 lg:mx-auto ">
                     <header className="flex flex-wrap items-center p-4 md:py-8">
@@ -55,7 +52,8 @@ const Profile = () => {
 
                 <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
             </main>
-            <div className="justify-center profile-container">
+            {/* Finish this. Create sample data in data base fetch the data and map into the component */}
+            {/* <div className="justify-center profile-container">
                 <div className="mt-3 row">
                     <div className="col">
                         <p className="h-5 px-2 text-2xl text-white text-padding font-weight-bold">From Your WishList </p>
@@ -73,8 +71,8 @@ const Profile = () => {
                     </div>
                 </div>
 
-            </div>
-            <Footer />
+            </div> */}
+            {/* <Footer /> */}
 
         </>
     );

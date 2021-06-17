@@ -1,5 +1,5 @@
 {
-  "Movie": [
+  "movie": [
     {
       "id": 1,
       "movie_title": "Introduction to HTML",
@@ -9,7 +9,7 @@
       "movie_gener": "Educational",
       "movie_trailer_link": "/sample1.mp4",
       "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "Review": [
+      "review": [
         {
           "id": 1,
           "reviewer_name": "Swarnendu Chatterjee",
@@ -45,14 +45,94 @@
       ]
     }
   ],
-  "Reply": [
+  "movie_short":
+  [
+    {
+      "id": 1,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    },
+    {
+      "id": 2,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    },
+    {
+      "id": 3,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    },
+    {
+      "id": 4,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    }, 
+    {
+      "id": 5,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    }, 
+    {
+      "id": 6,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    },
+    {
+      "id": 7,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    },
+    {
+      "id": 8,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    },
+    {
+      "id": 9,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    },
+    {
+      "id": 10,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    },
+    {
+      "id": 11,
+      "movie_title": "Wake Up Sid ",
+      "average_rating": 4.5,
+      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
+      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+    }
+  ],
+  "reply": [
     {
       "id": 1,
       "replier_name": "Swarnendu Chatterjee",
       "replier_profile_picture": "/avatar.png",
       "content": "Very nice movie, would surely rate it 5 stars",
       "no_of_reacts": 4,
-      "user_react_status": "false"
+      "user_react_status": false
     },
     {
       "id": 2,
@@ -60,10 +140,10 @@
       "replier_profile_picture": "/avatar.png",
       "content": "Justified",
       "no_of_reacts": 3,
-      "user_react_status": "false"
+      "user_react_status": false
     }
   ],
-  "Search": [
+  "search": [
     {
       "id": 1,
       "movie_title": "Avengers",
@@ -113,7 +193,7 @@
       "movie_gener": "Action/Thriller"
     }
   ],
-  "Upload": [
+  "upload": [
     {
       "movie_title": "Avengers",
       "movie_poster": "C:\\fakepath\\Avengers.jpg",

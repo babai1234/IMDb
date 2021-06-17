@@ -18,7 +18,7 @@ export type IMovieReviewReply = {
 }
 
 export type IMovie = {
-  movie_id: number
+  id: number
   movie_title: string
   movie_length: string
   average_rating: number
@@ -26,17 +26,10 @@ export type IMovie = {
   movie_gener: string
   movie_trailer_link: string
   movie_description: string
-  Review: IMovieReview[]
+  review: IMovieReview[]
 } 
 
-// export type IResult = {
-//   id: number
-//   movie_title: string
-//   movie_poster: string
-//   average_rating: number
-//   total_ratings: number
-//   movie_gener: string
-// }
+export interface IMovieShort extends Omit<IMovie, "movie_trailer_link" | "total_ratings" | "movie-gener" | "movie_length" | "Review">{movie_poster: string}
 
 export interface IMovieSearchResult extends Omit<IMovie, "movie_length" |" movie_trailer_link" |"movie_description"|"Review"> {
   movie_poster:string
