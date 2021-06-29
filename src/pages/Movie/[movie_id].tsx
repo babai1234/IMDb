@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 const trailer: NextPage<{movie: IMovie[]}> = ({movie}) => {
     return (
-        <div className="bg-black">
+        <div>
             <div className="py-7 flex m-auto w-10/12 justify-between">
                 <div className="mr-4">
                     <div className="mb-5">

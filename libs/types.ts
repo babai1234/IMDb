@@ -29,8 +29,19 @@ export type IMovie = {
   review: IMovieReview[]
 } 
 
-export interface IMovieShort extends Omit<IMovie, "movie_trailer_link" | "total_ratings" | "movie-gener" | "movie_length" | "Review">{movie_poster: string}
+export interface IMovieShort extends Omit
+  <IMovie,
+    "movie_trailer_link" |
+    "total_ratings" |
+    "movie-gener" |
+    "movie_length" |
+    "Review"
+  >{movie_poster: string}
 
-export interface IMovieSearchResult extends Omit<IMovie, "movie_length" |" movie_trailer_link" |"movie_description"|"Review"> {
-  movie_poster:string
-}
+export interface IMovieSearchResult extends Omit
+  <IMovie, 
+    "movie_length" |
+    " movie_trailer_link" |
+    "movie_description"|
+    "Review"
+  >{ movie_poster:string }

@@ -3,14 +3,18 @@ import { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import AuthInput from "@components/AuthInput";
 import { BiLoaderAlt } from "react-icons/bi";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registrationSchema } from "@libs/validationSchema";
+import { useContext } from "react";
+
+import AuthInput from "@components/AuthInput";
+import { AuthContext } from "src/Context/auth.context";
+import { registrationSchema, loginSchema } from "@libs/validationSchema";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
   const { push } = useRouter();
+  const [schema, setSchema] = useState(loginSchema)
 
   const {
     register,
@@ -18,7 +22,7 @@ export default function Auth() {
     formState: { errors },
   } = useForm({
     mode: "onTouched",
-    resolver: yupResolver(registrationSchema),
+    resolver: yupResolver(schema),
   });
 
   const [loading, setLoading] = useState(false);
@@ -26,6 +30,8 @@ export default function Auth() {
 
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const {setIsAuthenticated} = useContext(AuthContext)
 
   const handleClick = async (formData: any) => {
     try {
@@ -38,8 +44,8 @@ export default function Auth() {
       //     "Content-Type": "application/json",
       //   },
       // });
-      // console.log({ data });
-
+      console.log({ formData });
+      setIsAuthenticated(true)
       router.push("/");
       //   cookie.set("user", res.data);
     } catch (error) {
@@ -54,10 +60,14 @@ export default function Auth() {
     activeForm === "Log in"
       ? setActiveForm("Register")
       : setActiveForm("Log in");
+    
+    activeForm === "Log in"
+      ? setSchema(registrationSchema)
+      : setSchema(loginSchema)
   };
 
   return (
-    <div className="grid h-screen grid-cols-8 font-serif text-white">
+    <div className="grid h-screen grid-cols-8 text-white">
       {/* left part */}
       <div className="hidden col-span-3 p-4 text-gray-800 bg-yellow-500 md:grid place-items-center">
         <h1 className="mb-5 text-3xl font-semibold">
@@ -69,9 +79,9 @@ export default function Auth() {
           <Image
             loading="eager"
             width={200}
-            height={200}
+            height={180}
             layout="responsive"
-            src="/image_3d.png"
+            src="/IronMan.jpg"
           />
         </div>
       </div>
@@ -89,11 +99,11 @@ export default function Auth() {
               register={register}
               fieldName="username"
               error={errors.username}
-              placeholder="username"
+              placeholder="Username"
             />
             {activeForm === "Register" && (
               <AuthInput
-                placeholder="email"
+                placeholder="Email"
                 label="Email"
                 type="email"
                 register={register}
@@ -105,7 +115,7 @@ export default function Auth() {
             <AuthInput
               label="Password"
               type="password"
-              placeholder="6+ Characters"
+              placeholder="Password"
               fieldName="password"
               error={errors.password}
               register={register}
@@ -121,7 +131,7 @@ export default function Auth() {
                 register={register}
               />
             )}
-            <button className="flex items-center justify-center p-2 text-lg font-bold text-white bg-yellow-500 rounded-md focus:outline-none">
+            <button className="flex items-center justify-center p-2 text-lg font-bold text-gray-800 bg-yellow-500 rounded-md focus:outline-none">
               {!loading ? (
                 activeForm
               ) : (

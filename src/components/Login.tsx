@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import Navbar from "../components/Navbar";
+
 import AuthInput from "./AuthInput";
 
 const Login = () => {

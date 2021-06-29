@@ -20,7 +20,7 @@ const SearchBar = () => {
         onChange={(event) => setQuery(event.target.value)}
         className="w-full h-8 outline-none"
       />
-      <BiSearch className="cursor-pointer h-6 w-6 mt-1" />
+      <BiSearch className="cursor-pointer h-6 w-6 mt-1 text-black" />
     </form>
   );
 };

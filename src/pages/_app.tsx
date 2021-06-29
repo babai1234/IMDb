@@ -2,6 +2,7 @@ import "../../styles/globals.css";
 import Head from "next/head";
 import Layout from "@components/Layout";
 import { useRouter } from "next/router";
+import { AuthProvider } from "src/Context/auth.context";
 
 function MyApp({ Component, pageProps }) {
   
@@ -12,11 +13,17 @@ function MyApp({ Component, pageProps }) {
         <title>IMDB</title>
       </Head>
       {
-        router.pathname === "/auth" ? <Component {...pageProps}/>
-        :  
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        router.pathname === "/auth"
+        ?
+        <AuthProvider>
+          <Component {...pageProps}/>
+        </AuthProvider>
+        :
+        <AuthProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthProvider> 
       }
     </div>
   );

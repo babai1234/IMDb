@@ -45,6 +45,41 @@
       ]
     }
   ],
+  "review":
+  [
+    {
+      "id": 1,
+      "reviewer_name": "Swarnendu Chatterjee",
+      "reviewer_profile_picture": "/avatar.png",
+      "content": "Very nice movie, would surely rate it 5 stars",
+      "no_of_reacts": 22,
+      "user_react_status": false
+    },
+    {
+      "id": 2,
+      "reviewer_name": "Subham Roy",
+      "reviewer_profile_picture": "/avatar.png",
+      "content": "Nice movie",
+      "no_of_reacts": 10,
+      "user_react_status": false
+    },
+    {
+      "id": 3,
+      "reviewer_name": "Subrata Koley",
+      "reviewer_profile_picture": "/avatar.png",
+      "content": "Would surely rate this movie 5 stars",
+      "no_of_reacts": 25,
+      "user_react_status": false
+    },
+    {
+      "id": 4,
+      "reviewer_name": "Sumit Dey",
+      "reviewer_profile_picture": "/avatar.png",
+      "content": "Movie was average",
+      "no_of_reacts": 2,
+      "user_react_status": false
+    }
+  ],
   "movie_short":
   [
     {
@@ -125,7 +160,8 @@
       "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
     }
   ],
-  "reply": [
+  "reply":
+  [
     {
       "id": 1,
       "replier_name": "Swarnendu Chatterjee",

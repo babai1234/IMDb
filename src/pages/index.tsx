@@ -23,7 +23,7 @@ const Home: NextPage<{movieShort: IMovieShort[]}> = ({movieShort}) => {
   return (
     <div>
       <Head>
-        <title>Imdb-clone</title>
+        <title>Imdb</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="justify-center home-container">
@@ -32,7 +32,7 @@ const Home: NextPage<{movieShort: IMovieShort[]}> = ({movieShort}) => {
             <p className="h-5 px-2 text-2xl text-white text-padding font-weight-bold">TRENDING </p>
             <p className="h-1 px-2 py-2">today's Tv shows and Movies</p>
             {/* <p className="">Get more recommendation</p> */}
-            <div className="flex flex-row gap-3 mt-3 rounded-md row">
+            <div className="flex flex-row gap-6 mt-3 rounded-md row">
               <Carousel
                 additionalTransfrom={0}
                 arrows
