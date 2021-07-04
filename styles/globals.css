@@ -12,8 +12,15 @@
   body {
     @apply text-white bg-black;
   }
+  .chat-window-height{
+    height: 26rem;
+  }
+  .screen-height{
+    height: 78vh;
+  }
+
   .home-container,
-  .nav-container,
+  .nav-container
   .footer-container,
   .profile-container {
     padding-right: 12%;
