@@ -10,12 +10,12 @@ const chat = () => {
     Object.assign(global, { WebSocket: require('websocket').w3cwebsocket });
 
     const [message, setMessage] = useState("")
-
+    
     let connection_configuration = {
         brokerURL: 'ws://192.168.0.101:2198/chat',
         stompVersions : new Versions(['1.1', '1.2']),
-        reconnectDelay : 5000,
-        connectionTimeout : 10000,
+        reconnectDelay : 500,
+        connectionTimeout : 1000,
         heartbeatIncomming : 4000,
         heartbeatOutgoing : 4000,
         connectHeaders : {
@@ -25,15 +25,8 @@ const chat = () => {
         maxWebSocketChunkSize : 8*1024,
         splitLargeFrames : true,
     }
-    const stompClient = new Client(connection_configuration)
-    if(process.browser){
-        window.onload=function(){
-            createSubscription()
-        }
-    }
-    function createSubscription(){
-        console.log('Subscription running');
-        
+    const [stompClient, setStompClient] = useState(new Client(connection_configuration)) 
+    function initClient(){
         stompClient.onConnect = function(frame){
             console.log("Connection Established");
             let subscription = stompClient.subscribe('/topic/random_topic', (msg) => {
@@ -47,37 +40,37 @@ const chat = () => {
             )
             console.log(`New subscription created with id ${subscription.id}`);        
         }
-        stompClient.activate();
+        stompClient.onStompError = function(frame){
+            console.log("an stomp specific error occured");
+        }
+        stompClient.onDisconnect = function(frame){
+            console.log("stop disconnect frame received");
+        }
+        stompClient.onWebSocketClose = function(close_event){
+            console.log(`underlying websocket connection closed with code ${close_event.code} and reason ${close_event.reason} and its clean status is ${close_event.wasClean}`);
+        }
+        stompClient.onWebSocketError = function(event) {
+            console.log("an error occured in the underlying websocket");
+        }
+        stompClient.activate()
     }
-    stompClient.onStompError = function(frame){
-        console.log("an stomp specific error occured");
-    }
-    stompClient.onDisconnect = function(frame){
-        console.log("stop disconnect frame received");
-    }
-    stompClient.onWebSocketClose = function(close_event){
-        console.log(`underlying websocket connection closed with code ${close_event.code} and reason ${close_event.reason} and its clean status is ${close_event.wasClean}`);
-    }
-    stompClient.onWebSocketError = function(event) {
-        console.log("an error occured in the underlying websocket");
-    }
-    stompClient.activate();
-    const sendMessageHandler = (message) => {
-        let receiptId = String(Math.floor(Math.random()*100))
-        console.log(stompClient.connected);
-        stompClient.publish({
-            destination: "/app/random_topic",
-            body: message,
-            headers: {
-                receipt: receiptId
-            }
-        })
-        console.log('Message published')
-        setMessage('')
+    const sendMessageHandler = () => {
+        if(message){
+            let receiptId = String(Math.floor(Math.random()*100))
+            stompClient.publish({
+                destination: "/app/random_topic",
+                body: message,
+                headers: {
+                    receipt: receiptId
+                }
+            })
+            console.log('Message published '+message)
+            setMessage('')
+        }
     }
     
     return(
-        <div className="text-black flex flex-row bg-white">
+        <div className="text-black flex flex-row bg-white" onLoad={initClient}>
             <div className="flex flex-col w-4/12 border-r-2 border-gray-300">
                 <div className="flex flex-row h-20 bg-gray-100">
                     <div className="my-auto mx-2">
@@ -109,7 +102,7 @@ const chat = () => {
                 </div>
                 <div className="flex flex-row px-5 py-3 bg-gray-100">
                     <textarea cols={100} rows={2} value={message} onChange={(event)=>{setMessage(event.target.value)}} placeholder="Write a message" className="rounded-full outline-none pl-4 resize-none" />
-                    <span onClick={(message) => sendMessageHandler(message)} className="my-auto mx-4 rounded-full bg-blue-400 p-1 cursor-pointer">
+                    <span onClick={sendMessageHandler} className="my-auto mx-4 rounded-full bg-blue-400 p-1 cursor-pointer">
                         <MdSend size="1.6em" className="text-white" />
                     </span>
                 </div>
