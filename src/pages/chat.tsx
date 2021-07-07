@@ -11,7 +11,7 @@ const chat = () => {
     Object.assign(global, { WebSocket: require('websocket').w3cwebsocket });
 
     const [message, setMessage] = useState("")
-    const [data, setData] = useState<Message[]>([{text: "hello1", type: "send"}, {text: "hello2", type: "receive"}])
+    const [data, setData] = useState<Message[]>([])
     let connection_configuration = {
         brokerURL: 'ws://192.168.0.101:2198/chat',
         stompVersions : new Versions(['1.1', '1.2']),
@@ -32,8 +32,8 @@ const chat = () => {
             console.log("Connection Established");
             let subscription = stompClient.subscribe('/topic/random_topic', (msg) => {
                 console.log(`Message received ${msg.body} with headers ${msg.headers["destination"]}`);
-                const newData = data.concat({text: msg.body, type: 'receive'})
-                setData(newData)
+                // const newData = data.concat({text: msg.body, type: 'receive'})
+                setData(data => data.concat({text: msg.body, type: 'receive'}))
                 console.log(data);
                 // setData([...data,{text: msg.body, type: 'receive'}])
                 },
@@ -70,12 +70,9 @@ const chat = () => {
                 }
             })
             console.log('Message published '+message)
-            const newData = data.concat({text: message, type: 'send'})
-            setData(newData)
-            setTimeout(() => {
-                console.log(data);
-            }, 2000); 
-            
+            // const newData = data.concat({text: message, type: 'send'})
+            setData(data => data.concat({text: message, type: 'send'}))
+            console.log(data);                        
             setMessage('')
         }
     }
@@ -108,7 +105,9 @@ const chat = () => {
                 </div>
                 <div className="flex flex-col justify-end p-4 chat-window-height overflow-y-auto bg-blue-100">
                     {data ? data.map(message => (
-                        <MessageBox message={message} key={Math.floor(Math.random()*100)+1} />
+                        <div className={"flex " + (message.type === "send" ? "justify-end" : "justify-start")}>
+                            <MessageBox message={message} key={Math.floor(Math.random()*100)+1} />
+                        </div>
                     )) : null}
                 </div>
                 <div className="flex flex-row px-5 py-3 bg-gray-100">
