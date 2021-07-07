@@ -6,8 +6,7 @@ import Input from './Input';
 import { IMovieReviewReply } from '@libs/types';
 
 const Reply: FunctionComponent<{reply: IMovieReviewReply}> = ({reply}) => {
-console.log({reply});
-
+    console.log(reply);
     const [like, setLike] = useState(reply.no_of_reacts)
     const [flag, setFlag] = useState(0)
     const Like = <HiOutlineThumbUp onClick={()=>{setLike(like + 1); reply.user_react_status=true}} size="1.3em" className="mx-3.5 cursor-pointer" />

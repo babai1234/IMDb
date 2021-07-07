@@ -27,7 +27,12 @@ export type IMovie = {
   movie_trailer_link: string
   movie_description: string
   review: IMovieReview[]
-} 
+}
+
+export type Message = {
+  text: string
+  type: string
+}
 
 export interface IMovieShort extends Omit
   <IMovie,
