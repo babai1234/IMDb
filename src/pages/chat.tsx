@@ -3,7 +3,7 @@ import ChatCard from '@components/ChatCard'
 import {MdSend} from 'react-icons/md'
 import MessageBox from '@components/MessageBox'
 import { Client, Versions } from '@stomp/stompjs'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {Message} from '@libs/types'
 
 const chat = () => {
@@ -12,6 +12,15 @@ const chat = () => {
 
     const [message, setMessage] = useState("")
     const [data, setData] = useState<Message[]>([])
+    const messageElement = useRef(null)
+    useEffect(() => {
+        if(messageElement){
+            messageElement.current.addEventListener('DOMNodeInserted', event => {
+                const {currentTarget: target} = event
+                target.scroll({top: target.scrollHeight})
+            })
+        }
+    }, [])
     let connection_configuration = {
         brokerURL: 'ws://192.168.0.101:2198/chat',
         stompVersions : new Versions(['1.1', '1.2']),
@@ -94,6 +103,9 @@ const chat = () => {
                     <ChatCard />
                     <ChatCard />
                     <ChatCard />
+                    <ChatCard />
+                    <ChatCard />
+                    <ChatCard />
                 </div>
             </div>
             <div className="flex flex-col w-8/12 z-10">
@@ -103,10 +115,10 @@ const chat = () => {
                     </div>
                     <span className="text-lg font-semibold my-auto">User</span>
                 </div>
-                <div className="flex flex-col justify-end p-4 chat-window-height overflow-y-auto bg-blue-100">
-                    {data ? data.map(message => (
+                <div className="flex flex-col px-4 chat-window-height overflow-y-auto bg-blue-100" ref={messageElement}>
+                    {data ? data.map((message, index) => (
                         <div className={"flex " + (message.type === "send" ? "justify-end" : "justify-start")}>
-                            <MessageBox message={message} key={Math.floor(Math.random()*100)+1} />
+                            <MessageBox message={message} key={index} />
                         </div>
                     )) : null}
                 </div>

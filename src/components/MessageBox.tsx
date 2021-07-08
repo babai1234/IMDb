@@ -10,7 +10,7 @@ const MessageBox: FunctionComponent<{message: Message}> = ({message}) => {
             (type === 'send' ? "bg-blue-500" : "bg-white")
          }>
             <p className="inline-block mr-4">{text}</p>
-            <small className="text-xs text-right">7:39 PM</small>
+            <small className="text-xs text-right">{new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</small>
         </div>
     )
 }
