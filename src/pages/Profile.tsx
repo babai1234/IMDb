@@ -3,6 +3,36 @@ import { Button } from "react-bootstrap";
 import Carousels from "@components/MovieShort";
 // import Footer from "@components/Footer";
 const Profile = () => {
+    const followuser = async () => {
+        try {
+            //const follow = { u_id: "subhamsharma", token: "" };
+            const response = await fetch('http://localhost:8082/user/followrequest?target_user_id=subhamsharma', {
+                method: "POST",
+                headers: {
+                    "Content- Type": "application/json",
+                },
+                // body: JSON.stringify(follow)
+            })
+                .then((response) => {
+                    console.log("ok");
+                })
+            // const [userId, token] = await response.json();
+            // localStorage.setItem('u_id', userId);
+            // localStorage.setItem('Token', token);
+            // .then(response => {
+            //     if (response.status === 201) {
+            //         response.json().then(data => {
+            //             window.localStorage.setItem("u_id", JSON.stringify(data.u_id));
+
+            //         })
+            //     }
+            // })
+
+        }
+        catch (error) {
+            console.log(error.message);
+        }
+    }
     return (
         <>
             <main className="items-center text-white bg-gray-700 align-center bg-opacity-10 profile-page">
