@@ -10,11 +10,16 @@ import { useContext } from "react";
 import AuthInput from "@components/AuthInput";
 import { AuthContext } from "src/Context/auth.context";
 import { registrationSchema, loginSchema } from "@libs/validationSchema";
+import ErrorModal from "@components/ErrorModal";
 
 export default function Auth() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [error, setError] = useState(false);
   const { push } = useRouter();
   const [schema, setSchema] = useState(loginSchema)
+  const [loading, setLoading] = useState(false);
+  const [activeForm, setActiveForm] = useState<"Log in" | "Register">("Log in");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const {setIsAuthenticated} = useContext(AuthContext)
 
   const {
     register,
@@ -25,37 +30,34 @@ export default function Auth() {
     resolver: yupResolver(schema),
   });
 
-  const [loading, setLoading] = useState(false);
-  const [activeForm, setActiveForm] = useState<"Log in" | "Register">("Log in");
-
-  const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const {setIsAuthenticated} = useContext(AuthContext)
-
   const handleClick = async (formData: any) => {
+    const url = activeForm === "Log in" ? "http://localhost:8082/auth/signin" : "http://localhost:8082/auth/signup"
     try {
       setLoading(true);
-      // const { data } = await axios({
-      //   method: "POST",
-      //   url: activeForm === "Log in" ? "api/auth/login" : "api/auth/signup",
-      //   data: formData,
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-      console.log({ formData });
+      const response = await fetch(url,{
+        method: "POST",
+        body: (activeForm === "Log in" ? JSON.stringify({userId: formData.username, password: formData.password}):
+              JSON.stringify({userId: formData.username, password: formData.password, emailId: formData.emailid })),
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+      const {userId, token} = await response.json();
+      localStorage.setItem('UserId', userId)
+      localStorage.setItem('Token', token)
+      console.log(`Username: ${localStorage.getItem('UserId')} Token: ${localStorage.getItem('Token')}`);
       setIsAuthenticated(true)
-      router.push("/");
-      //   cookie.set("user", res.data);
-    } catch (error) {
-      setErrorMessage(error.response.data.message);
+      push("/");
+    }
+    catch (error) {
+      console.log(`Error is: ${error.message} code is: ${error.status}`);
+      setError(true)
+      // setErrorMessage(error.response.data.message);
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   };
 
-  // TODO add validation(errors) in form
   const changeActiveForm = () => {
     activeForm === "Log in"
       ? setActiveForm("Register")
@@ -65,9 +67,10 @@ export default function Auth() {
       ? setSchema(registrationSchema)
       : setSchema(loginSchema)
   };
-
+  
   return (
     <div className="grid h-screen grid-cols-8 text-white">
+      {/* {error ? <ErrorModal />: null} */}
       {/* left part */}
       <div className="hidden col-span-3 p-4 text-gray-800 bg-yellow-500 md:grid place-items-center">
         <h1 className="mb-5 text-3xl font-semibold">
