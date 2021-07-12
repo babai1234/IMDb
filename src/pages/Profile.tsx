@@ -17,8 +17,9 @@ const Profile = () => {
                         <div className="w-8/12 ml-4 md:w-7/12">
                             <div className="mb-4 md:flex md:flex-wrap md:items-center">
                                 <h2 className="inline-block mb-2 text-3xl font-light md:mr-2 sm:mb-0">#subrata_kolay</h2>
+                                <button onClick={()=>followuser()}>
                                 <a href="#" className="block px-2 py-1 text-sm font-semibold text-center text-white bg-blue-500 rounded sm:inline-block">Follow</a>
-
+                                </button>
                             </div>
 
 
