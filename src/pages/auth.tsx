@@ -1,14 +1,11 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { BiLoaderAlt } from "react-icons/bi";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
 
 import AuthInput from "@components/AuthInput";
-import { AuthContext } from "src/Context/auth.context";
 import { registrationSchema, loginSchema } from "@libs/validationSchema";
 import ErrorModal from "@components/ErrorModal";
 
@@ -18,8 +15,8 @@ export default function Auth() {
   const [schema, setSchema] = useState(loginSchema)
   const [loading, setLoading] = useState(false);
   const [activeForm, setActiveForm] = useState<"Log in" | "Register">("Log in");
+  const [errorStatus, setErrorStatus] = useState<number | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const {setIsAuthenticated} = useContext(AuthContext)
 
   const {
     register,
@@ -43,16 +40,19 @@ export default function Auth() {
         },
       });
       const {userId, token} = await response.json();
-      localStorage.setItem('UserId', userId)
-      localStorage.setItem('Token', token)
-      console.log(`Username: ${localStorage.getItem('UserId')} Token: ${localStorage.getItem('Token')}`);
-      setIsAuthenticated(true)
-      push("/");
+      if(!response.ok){
+        setError(true)
+        setErrorStatus(response.status)
+        setErrorMessage(response.statusText)
+      }
+      else{
+        localStorage.setItem('UserId', userId)
+        localStorage.setItem('Token', token)
+        push("/");
+      }
     }
     catch (error) {
-      console.log(`Error is: ${error.message} code is: ${error.status}`);
-      setError(true)
-      // setErrorMessage(error.response.data.message);
+      console.log(`Error is: ${error.message}`);
     } finally {
       setLoading(false)
     }
@@ -70,7 +70,7 @@ export default function Auth() {
   
   return (
     <div className="grid h-screen grid-cols-8 text-white">
-      {/* {error ? <ErrorModal />: null} */}
+      {error ? <ErrorModal close={setError} message={errorMessage} status={errorStatus} />: null}
       {/* left part */}
       <div className="hidden col-span-3 p-4 text-gray-800 bg-yellow-500 md:grid place-items-center">
         <h1 className="mb-5 text-3xl font-semibold">
