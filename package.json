@@ -13,6 +13,7 @@
     "@stomp/stompjs": "^6.1.0",
     "axios": "^0.21.1",
     "next": "^10.2.3",
+    "rc-slider": "^9.7.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "17.0.2",
@@ -20,6 +21,9 @@
     "react-hook-form": "^7.8.8",
     "react-icons": "^4.2.0",
     "react-multi-carousel": "^2.6.3",
+    "react-player": "^2.9.0",
+    "react-resizable": "^3.0.4",
+    "screenfull": "^5.1.0",
     "swr": "^0.5.6",
     "websocket": "^1.0.34",
     "yup": "^0.32.9"
@@ -27,6 +31,7 @@
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.10",
     "@types/react": "^17.0.5",
+    "@types/react-resizable": "^1.7.3",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.14",
     "tailwindcss": "^2.0.4",

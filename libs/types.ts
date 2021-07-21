@@ -18,15 +18,18 @@ export type IMovieReviewReply = {
 }
 
 export type IMovie = {
-  id: number
-  movie_title: string
-  movie_length: string
-  average_rating: number
-  total_ratings: number
-  movie_gener: string
-  movie_trailer_link: string
-  movie_description: string
-  review: IMovieReview[]
+  id: string,
+  title: string,
+  description: string,
+  timestamp: number,
+  length: number,
+  posterLink: string,
+  trailerLink: string,
+  noOfReviews: number,
+  noOfRatings: number,
+  averageRating: number,
+  genres: string,
+  userRating: number
 }
 
 export type Message = {

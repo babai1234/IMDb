@@ -48,6 +48,8 @@ export default function Auth() {
       else{
         localStorage.setItem('UserId', userId)
         localStorage.setItem('Token', token)
+        console.log("UserId: "+userId);
+        console.log("Token: "+token);
         push("/");
       }
     }
