@@ -7,21 +7,19 @@ import { AuthContext } from "src/Context/auth.context";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
-
   const router = useRouter()
   const routeHandler = () => {
     router.push("/profile")
   }
 
   const {isAuthenticated} = useContext(AuthContext)
-  console.log(isAuthenticated)
 
   const profile = (
     <div className="flex cursor-pointer" onClick={routeHandler}>
       <div className="pt-4 mr-2">
         <Image src="/avatar.png" width={30} height={30} className="rounded-full"/>
       </div>
-      <span className="pt-4 ml-2 text-lg font-bold">Subrata_Kolay</span>
+      <span className="pt-4 ml-2 text-lg font-bold">Subrata Kolay</span>
     </div>
   )
   return (
