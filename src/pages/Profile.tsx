@@ -1,6 +1,7 @@
 import React from "react";
 
 // import Footer from "@components/Footer";
+
 const profile = () => {
 
      const followUser = async()=>{
@@ -14,7 +15,6 @@ const profile = () => {
         })
         const data = await response.json()
         console.log(data);
-        
     }
     return (
         <>
