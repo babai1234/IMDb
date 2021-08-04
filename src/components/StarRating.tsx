@@ -1,15 +1,31 @@
 import {AiFillStar} from 'react-icons/ai'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import { useRouter } from 'next/router'
 
-const StarRating = () => {
-    const [rating, setRating] = useState(null)
+const StarRating = ({userRating}) => {
+    const [rating, setRating] = useState(0)
     const [hover, setHover] = useState(null)
-    const rateHandler = (rate: number) => {
-        console.log(rate)
-        setRating(rate)
-        console.log(rating);
-        
+    const router = useRouter()
+    useEffect(() => {
+        console.log(userRating);
+        setRating(userRating)
+    }, [])
+    
+    const postRateDataHandler = async(rate: number) => {
+        const {movie_id} = router.query
+        const response = await fetch(`http://localhost:8082/movie/rating?movieId=${movie_id}`,{
+            method: "PUT",
+            headers: {
+                "Content-Type": "Application/JSON",
+                "Authorization": localStorage.getItem("Token"),
+                "u_id": localStorage.getItem("UserId")
+            },
+            body: JSON.stringify({rating: rate})
+        })
+        const res = await response.json()
+        console.log(res)
     }
+
     return (
         <div className="flex pb-2">
             {[...Array(5)].map( (star, i) => {
@@ -17,7 +33,7 @@ const StarRating = () => {
                 return (
                 <div 
                     key={rate} 
-                    onClick={() => {rateHandler(rate)}}
+                    onClick={() => {setRating(rate);postRateDataHandler(rate)}}
                     className="cursor-pointer" 
                     onMouseEnter={() => setHover(rate)} 
                     onMouseLeave={() => setHover(null)}

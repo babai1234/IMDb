@@ -39,17 +39,17 @@ export default function Auth() {
           "Content-Type": "application/json"
         },
       });
-      const {userId, token} = await response.json();
+      const data = await response.json();
       if(!response.ok){
         setError(true)
-        setErrorStatus(response.status)
-        setErrorMessage(response.statusText)
+        setErrorStatus(data.code)
+        setErrorMessage(data.msg)
       }
       else{
-        localStorage.setItem('UserId', userId)
-        localStorage.setItem('Token', token)
-        console.log("UserId: "+userId);
-        console.log("Token: "+token);
+        localStorage.setItem('UserId', data.userId)
+        localStorage.setItem('Token', data.token)
+        console.log("UserId: "+data.userId);
+        console.log("Token: "+data.token);
         push("/");
       }
     }

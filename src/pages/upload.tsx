@@ -1,6 +1,6 @@
-import DropZoneComponent from "@components/DropZoneComponent";
-import axios from "axios";
 import { FormEvent, useState } from "react";
+
+import DropZoneComponent from "@components/DropZoneComponent";
 
 const upload = () => {
   const [title, setTitle] = useState("");
@@ -9,32 +9,38 @@ const upload = () => {
   const [gener, setGener] = useState("");
   const [trailer, setTrailer] = useState(null);
   const [description, setDescription] = useState("");
-  const postMovie = async (e: FormEvent<HTMLFormElement>) => {
+  const postMovieHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = {
-      movie_title: title,
-      movie_poster: poster,
-      movie_length: length,
-      movie_gener: gener,
-      movie_trailer: trailer,
-      movie_description: description,
+      title: title,
+      poster: poster,
+      length: length,
+      genres: gener,
+      trailer: trailer,
+      description: description,
     };
-    const response = await axios({
-      method: "post",
-      url: "http://localhost:3001/Upload",
+    const formData = new FormData()
+    Object.keys(data).forEach(key => formData.append(key, data[key]))
+    const response = await fetch("http://localhost:8082/movie/upload",{
+      method: "POST",
       headers: {
-        "Content-type": "application/json",
+        "Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbnVzZXIyMTM1MyIsInBhc3N3b3JkIjoiJDJhJDEwJDhCcFZyZkdqNE9LdkRXT3VVR1hTcnUxcm1xVC92elhYc085NDBoTGE0SmJIZTFFNk9kU3h1IiwiYWN0aXZlIjp0cnVlLCJleHAiOjE2MjgxMDM0OTgsImlhdCI6MTYyODA4MzQ5OH0.615iFExhnvL_FZ3M1zY_UPVZnuGTQFskPAzIBwOhgAI",
+        "u_id": "adminuser21353"
       },
-      data: JSON.stringify(data),
+      body: formData
     })
-    .catch(err => {console.log(err.message)});
+    console.log(response);
+    
+    const res = await response.json()
+    console.log(res)
+    // Object.keys(data).forEach(key => console.log(key,formData.get(key)))
   };
 
   return (
     <div className="flex items-center justify-center h-screen bg-black">
       <form
         action="submit"
-        onSubmit={(event) => postMovie(event)}
+        onSubmit={(event) => postMovieHandler(event)}
         className="grid justify-around w-8/12 grid-cols-2 gap-8 text-white"
       >
         <div className="flex flex-col col-span-2 md:col-span-1">

@@ -84,80 +84,69 @@
   [
     {
       "id": 1,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     },
     {
       "id": 2,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     },
     {
       "id": 3,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     },
     {
       "id": 4,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     }, 
     {
       "id": 5,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     }, 
     {
       "id": 6,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     },
     {
       "id": 7,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     },
     {
       "id": 8,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     },
     {
       "id": 9,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     },
     {
       "id": 10,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     },
     {
       "id": 11,
-      "movie_title": "Wake Up Sid ",
-      "average_rating": 4.5,
-      "movie_description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, eveniet. Reprehenderit, labore! Quidem minus, natus exercitationem doloribus eveniet beatae ab quo animi ducimus dolore corrupti, facere possimus facilis odio fuga.",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg"
+      "title": "Wake Up Sid ",
+      "averageRating": 4.5,
+      "posterLink": "/CaptainAmerica-TheWinterSoldier.jpg"
     }
   ],
   "reply":
@@ -182,51 +171,51 @@
   "search": [
     {
       "id": 1,
-      "movie_title": "Avengers",
-      "movie_poster": "/Avengers.jpg",
-      "average_rating": 4,
-      "total_ratings": 3261,
-      "movie_gener": "Action/Thriller"
+      "title": "Avengers",
+      "posterLink": "/Avengers.jpg",
+      "averageRating": 4,
+      "noOfRatings": 3261,
+      "genres": "Action/Thriller"
     },
     {
       "id": 2,
-      "movie_title": "Avengers Infinity War",
-      "movie_poster": "/Avengers-InfinityWar.jpg",
-      "average_rating": 4.5,
-      "total_ratings": 2456,
-      "movie_gener": "Action/Thriller"
+      "title": "Avengers",
+      "posterLink": "/Avengers.jpg",
+      "averageRating": 4,
+      "noOfRatings": 3261,
+      "genres": "Action/Thriller"
     },
     {
       "id": 3,
-      "movie_title": "Iron Man",
-      "movie_poster": "/IronMan.jpg",
-      "average_rating": 3.7,
-      "total_ratings": 3461,
-      "movie_gener": "Action/Thriller"
+      "title": "Avengers",
+      "posterLink": "/Avengers.jpg",
+      "averageRating": 4,
+      "noOfRatings": 3261,
+      "genres": "Action/Thriller"
     },
     {
       "id": 4,
-      "movie_title": "Captain America - Winter Soldier",
-      "movie_poster": "/CaptainAmerica-TheWinterSoldier.jpg",
-      "average_rating": 3.5,
-      "total_ratings": 5621,
-      "movie_gener": "Action/Thriller"
+      "title": "Avengers",
+      "posterLink": "/Avengers.jpg",
+      "averageRating": 4,
+      "noOfRatings": 3261,
+      "genres": "Action/Thriller"
     },
     {
       "id": 5,
-      "movie_title": "Avengers - EndGame",
-      "movie_poster": "/Avengers-EndGame.jpg",
-      "average_rating": 4.8,
-      "total_ratings": 4561,
-      "movie_gener": "Action/Thriller"
+      "title": "Avengers",
+      "posterLink": "/Avengers.jpg",
+      "averageRating": 4,
+      "noOfRatings": 3261,
+      "genres": "Action/Thriller"
     },
     {
       "id": 6,
-      "movie_title": "Captain America - CivilWar",
-      "movie_poster": "/CaptainAmerica-CivilWar.jpg",
-      "average_rating": 4.1,
-      "total_ratings": 3456,
-      "movie_gener": "Action/Thriller"
+      "title": "Avengers",
+      "posterLink": "/Avengers.jpg",
+      "averageRating": 4,
+      "noOfRatings": 3261,
+      "genres": "Action/Thriller"
     }
   ],
   "upload": [
@@ -247,6 +236,61 @@
       "movie_trailer": "sample1.mp4",
       "movie_description": "Full of action and suspense",
       "id": 2
+    }
+  ],
+  "suggestion":
+  [
+    {
+      "id": "1",
+      "content": "SpiderMan 1"
+    },
+    {
+      "id": "2",
+      "content": "SpiderMan 2"
+    },
+    {
+      "id": "3",
+      "content": "SpiderMan 3"
+    },
+    {
+      "id": "4",
+      "content": "SpiderMan Home Comming"
+    },
+    {
+      "id": "5",
+      "content": "SpiderMan Far from Home"
+    },
+    {
+      "id": "6",
+      "content": "Venom"
+    },
+    {
+      "id": "7",
+      "content": "Venom 2"
+    },
+    {
+      "id": "8",
+      "content": "IronMan 1"
+    },
+    {
+      "id": "9",
+      "content": "IronMan 2"
+    },
+    {
+      "id": "10",
+      "content": "IronMan 3"
+    },
+    {
+      "id": "11",
+      "content": "Captain America Civil War"
+    },
+    {
+      "id": "12",
+      "content": "Captain America The Winter Soldier"
+    },
+    {
+      "id": "13",
+      "content": "Avengers"
     }
   ]
 }

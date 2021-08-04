@@ -27,9 +27,18 @@ export type IMovie = {
   trailerLink: string,
   noOfReviews: number,
   noOfRatings: number,
-  averageRating: number,
+  avgRating: number,
   genres: string,
   userRating: number
+}
+
+export type QueryParams = {
+  params: string
+}
+
+export type suggestion = {
+  id: string
+  content: string
 }
 
 export type Message = {
@@ -39,17 +48,23 @@ export type Message = {
 
 export interface IMovieShort extends Omit
   <IMovie,
-    "movie_trailer_link" |
-    "total_ratings" |
-    "movie-gener" |
-    "movie_length" |
-    "Review"
-  >{movie_poster: string}
+    "trailerLink" |
+    "noOfRatings" |
+    "genres" |
+    "length" |
+    "noOfReviews" |
+    "geners" |
+    "userRating" |
+    "timestamp" |
+    "description"
+  >{posterLink: string}
 
 export interface IMovieSearchResult extends Omit
   <IMovie, 
-    "movie_length" |
-    " movie_trailer_link" |
-    "movie_description"|
-    "Review"
-  >{ movie_poster:string }
+    "length" |
+    "trailerLink" |
+    "description"|
+    "timestamp"|
+    "userRating"|
+    "noOfReviews"
+  >{ posterLink:string }
