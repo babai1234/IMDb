@@ -13,7 +13,8 @@ import { useRouter } from 'next/router';
 // "Authorization": localStorage.getItem("Token")
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const res = await fetch('http://localhost:8082/movie/info?movieId=Movie@1626801763870',{
+    const {params} = context
+    const res = await fetch('http://localhost:8082/movie/info?movieId='+params.movie_id,{
         method:"GET",
         headers:{
             "Content-Type": "application/JSON",
@@ -41,22 +42,25 @@ const trailer: NextPage<{movie: IMovie}> = ({movie}) => {
                 "u_id": localStorage.getItem("UserId")
             }
         })
+        console.log(response);
         const res = await response.json()
         console.log(res);
     }
-    // const addToWatchListHandler = async() => {
-    //     const response = await fetch(`http://localhost:8082/user/wishlist?movieId=${movie_id}`,{
-    //         method: "PUT",
-    //         headers:{
-    //             "Content-Type": "application/JSON",
-    //             "Authorization": localStorage.getItem("Token"),
-    //             "u_id": localStorage.getItem("UserId")
-    //         }
-    //     })
-    //     const res = await response.json()
-    //     console.log(res);
-    // }
+    const addToWatchListHandler = async() => {
+        const response = await fetch(`http://localhost:8082/user/watchlist?movieId=${movie_id}`,{
+            method: "PUT",
+            headers:{
+                "Authorization": localStorage.getItem("Token"),
+                "u_id": localStorage.getItem("UserId")
+            }
+        })
+        console.log(response);
+        const res = await response.json()
+        console.log(res);
+    }
 
+    console.log(movie);
+    
     return (
         <div>
             <div className="py-7 flex m-auto w-10/12 justify-between">
@@ -74,13 +78,13 @@ const trailer: NextPage<{movie: IMovie}> = ({movie}) => {
                                 {movie.avgRating} ({movie.noOfRatings})
                             </span>
                             <span className="mr-4">
-                                <button className="bg-blue-600 text-gray-50 outline-none rounded-md py-1 px-5 flex">
-                                <BiPlus className="mt-1" /> WatchList
+                                <button onClick={addToWatchListHandler} className="bg-blue-600 text-gray-50 outline-none rounded-md py-1 px-5 flex">
+                                    <BiPlus className="mt-1" /> WatchList
                                 </button>
                             </span>
                             <span>
                                 <button onClick={addToWishListHandler} className="bg-blue-600 text-gray-50 outline-none rounded-md py-1 px-5 flex">
-                                <BiPlus className="mt-1" /> WishList
+                                    <BiPlus className="mt-1" /> WishList
                                 </button>
                             </span>
                         </p>

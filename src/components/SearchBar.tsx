@@ -10,19 +10,24 @@ const SearchBar = () => {
 	const [displaySuggestion, setDisplaySuggestion] = useState(false)
 	const [displayCategory, setDisplayCategory] = useState(false)
 	const suggestionRef = useRef(null)
-	const [searchValue, setSearchValue] = useState(false)
+	// const [searchValue, setSearchValue] = useState(false)
 	const [dataList, setDataList] = useState<suggestion[]>([])
 	const [category, setCategory] = useState("Movie")
 
+	// useEffect(() => {
+	// 	async function getSuggestionDataList(){
+	// 		const response = await fetch("http://localhost:3001/suggestion")
+	// 		const data: suggestion[] = await response.json()
+	// 		setDataList(data)
+	// 	}
+	// 	getSuggestionDataList()
+	// }, [searchValue])
 	useEffect(() => {
-		async function getSuggestionDataList(){
+		const timer = setTimeout(async() => {
 			const response = await fetch("http://localhost:3001/suggestion")
 			const data: suggestion[] = await response.json()
 			setDataList(data)
-		}
-		getSuggestionDataList()
-	}, [searchValue])
-	useEffect(() => {
+		}, 500);
 		let matches = dataList.filter(data => {
 			const regex = new RegExp(`^${query}`, "gi")
 			return data.content.match(regex)
@@ -30,10 +35,12 @@ const SearchBar = () => {
 		if(query.trim().length === 0){
 			matches=[]
 			setDisplaySuggestion(false)
-			setSearchValue(false)
 		}
 		setsuggestion(matches);
-		console.log(matches)
+		// console.log(matches)
+		return () => {
+			clearTimeout(timer)
+		}
 	}, [query])
 	useEffect(() => {
 		document.addEventListener("mousedown", handleClickOutside)
@@ -57,7 +64,7 @@ const SearchBar = () => {
 	const queryChangeHandler = (event: any) => {
 		setQuery(event.target.value)
 		setDisplaySuggestion(true)
-		setSearchValue(true)
+		// setSearchValue(true)
 	}
 	const suggestionClickedHandler = () => {
 		setDisplaySuggestion(false)

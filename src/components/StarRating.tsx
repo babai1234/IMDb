@@ -13,6 +13,7 @@ const StarRating = ({userRating}) => {
     
     const postRateDataHandler = async(rate: number) => {
         const {movie_id} = router.query
+        console.log(movie_id)
         const response = await fetch(`http://localhost:8082/movie/rating?movieId=${movie_id}`,{
             method: "PUT",
             headers: {

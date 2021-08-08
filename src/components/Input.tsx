@@ -7,6 +7,7 @@ const Input = () => {
     const router = useRouter()
     const postHandler = async() => {
         const {movie_id} = router.query
+        console.log(movie_id)
         const response = await fetch(`http://localhost:8082/movie/review?movieId=${movie_id}`,{
             method: "POST",
             headers: {
@@ -17,6 +18,9 @@ const Input = () => {
             body: JSON.stringify({content: review})
         })
         setReview('')
+        console.log(response)
+        const res = await response.json()
+        console.log(res)
     }
     return (
         <div className="py-4 flex">

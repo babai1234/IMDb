@@ -33,14 +33,15 @@ export default function Auth() {
       setLoading(true);
       const response = await fetch(url,{
         method: "POST",
-        body: (activeForm === "Log in" ? JSON.stringify({userId: formData.username, password: formData.password}):
-              JSON.stringify({userId: formData.username, password: formData.password, emailId: formData.emailid })),
         headers: {
           "Content-Type": "application/json"
         },
+        body: activeForm === "Log in" ? JSON.stringify({userId: formData.username, password: formData.password}):
+              JSON.stringify({userId: formData.username, password: formData.password, emailId: formData.email })
       });
       const data = await response.json();
       if(!response.ok){
+        console.log(data)
         setError(true)
         setErrorStatus(data.code)
         setErrorMessage(data.msg)

@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 
 import DropZoneComponent from "@components/DropZoneComponent";
+import { useRouter } from "next/router";
 
 const upload = () => {
   const [title, setTitle] = useState("");
@@ -9,12 +10,13 @@ const upload = () => {
   const [gener, setGener] = useState("");
   const [trailer, setTrailer] = useState(null);
   const [description, setDescription] = useState("");
+  const router = useRouter()
   const postMovieHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = {
       title: title,
       poster: poster,
-      length: length,
+      length: parseInt(length),
       genres: gener,
       trailer: trailer,
       description: description,
@@ -24,16 +26,14 @@ const upload = () => {
     const response = await fetch("http://localhost:8082/movie/upload",{
       method: "POST",
       headers: {
-        "Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbnVzZXIyMTM1MyIsInBhc3N3b3JkIjoiJDJhJDEwJDhCcFZyZkdqNE9LdkRXT3VVR1hTcnUxcm1xVC92elhYc085NDBoTGE0SmJIZTFFNk9kU3h1IiwiYWN0aXZlIjp0cnVlLCJleHAiOjE2MjgxMDM0OTgsImlhdCI6MTYyODA4MzQ5OH0.615iFExhnvL_FZ3M1zY_UPVZnuGTQFskPAzIBwOhgAI",
+        "Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbnVzZXIyMTM1MyIsInBhc3N3b3JkIjoiJDJhJDEwJEVLUjFZcS41cGVYOENBY2JZekFtWE9GVmVocW5oUVJTZmVuS2dhdTNCellzYUNZc0ZEVXcuIiwiYWN0aXZlIjp0cnVlLCJleHAiOjE2Mjg0MzEwNTIsImlhdCI6MTYyODQxMTA1Mn0.3b_wNLK2a6toMffeEBSZfWIp_4AzfK9ErOyWJ1xpA6A",
         "u_id": "adminuser21353"
       },
       body: formData
     })
-    console.log(response);
-    
     const res = await response.json()
     console.log(res)
-    // Object.keys(data).forEach(key => console.log(key,formData.get(key)))
+    router.push(`movie/${res.id}`)
   };
 
   return (
