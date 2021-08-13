@@ -1,34 +1,40 @@
-import { IMovieReviewReply, IMovieReview } from "@libs/types";
-import axios from "axios";
+import { IReview } from "@libs/types";
 import { GetServerSideProps, NextPage } from "next";
 
 import Reply from "@components/Reply";
 import Review from "@components/Review";
-import useSWR from "swr";
+import Input from "@components/Input";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const {review_id} = context.params
     
-    const [replyResponse, reviewResponse] = await Promise.all([
-        axios.get('http://localhost:3001/reply')
-            .then(res => res.data)
-            .catch(err => console.log(err.message)),
-        axios.get('http://localhost:3001/review/'+review_id)
-            .then(res => res.data)
-            .catch(err => console.log(err.message))
-    ])
+    const  Response = await fetch('http://localhost:3001/review/'+review_id)
+    const review = await Response.json()
+
     return{
         props:{
-            reply_res: replyResponse,
-            review_res: reviewResponse
+            review_res: review
         }
     }
 }
 
-const Review_id: NextPage<{reply_res: IMovieReviewReply[], review_res: IMovieReview}> = ({reply_res, review_res}) => {
+const Review_id: NextPage<{review_res: IReview}> = ({ review_res }) => {
 
-//     const fetcher = (url: string) => axios(url).then(res => res.data)
-//      const {data} = useSWR<IMovieReviewReply[]>('http://localhost:3001/Reply', fetcher, {initialData: reply_res})
+    const replies = review_res.replyList.result
+    const postReplyHandler = async(reply: string) => {
+        const response = await fetch(`http://localhost:8082/movie/reply?reviewId=${review_res.id}`,{
+            method: "POST",
+            headers: {
+                "Content-Type": "Application/JSON",
+                "Authorization": localStorage.getItem("Token"),
+                "u_id": localStorage.getItem("UserID")
+            },
+            body: JSON.stringify({content: reply})
+        })
+        console.log(response)
+        const res = await response.json()
+        console.log(res)
+    }
 
     return (
         <div className="max-h-full flex flex-col">
@@ -36,7 +42,8 @@ const Review_id: NextPage<{reply_res: IMovieReviewReply[], review_res: IMovieRev
                 <Review review={review_res} key={review_res.id} />
             </div>
             <div className="mx-auto pl-14 w-8/12">
-                {reply_res.map(reply => (
+                <Input postData={postReplyHandler} />
+                {replies.map(reply => (
                     <Reply reply={reply} key={reply.id} />
                 ))}
             </div>

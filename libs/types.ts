@@ -1,20 +1,46 @@
 
 export type IMovieReview = {
-  id: number
-  reviewer_name: string
-  reviewer_profile_picture: string
+  id: string
+  timestamp: number
   content: string
-  no_of_reacts: number
-  user_react_status: boolean
+  userObject: {
+    id: string
+    profilePictureLink: string
+  }
+  noOfLikes: number
+  noOfReplies: number
+  userReact: boolean
 }
 
-export type IMovieReviewReply = {
-  id: number
-  replier_name: string
-  replier_profile_picture: string
+export type IReview = {
+  id: string
+  timestamp: number
   content: string
-  no_of_reacts: number
-  user_react_status: boolean
+  userObject: {
+    id: string
+    profilePictureLink: string
+  }
+  noOfLikes: number
+  noOfReplies: number
+  userReact: boolean
+  replyList: {
+    id:number
+    size: number
+    length: number
+    result: IReviewReply[]
+  }
+}
+
+export type IReviewReply = {
+  id: string
+  timestamp: number
+  content: string
+  userObject: {
+    id: string
+    profilePictureLink: string
+  }
+  noOfLikes: number
+  userReact: boolean
 }
 
 export type IMovie = {
@@ -30,10 +56,6 @@ export type IMovie = {
   avgRating: number,
   genres: string,
   userRating: number
-}
-
-export type QueryParams = {
-  params: string
 }
 
 export type suggestion = {

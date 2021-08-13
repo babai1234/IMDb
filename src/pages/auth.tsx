@@ -10,13 +10,14 @@ import { registrationSchema, loginSchema } from "@libs/validationSchema";
 import ErrorModal from "@components/ErrorModal";
 
 export default function Auth() {
-  const [error, setError] = useState(false);
   const { push } = useRouter();
+  const [error, setError] = useState(false);
   const [schema, setSchema] = useState(loginSchema)
   const [loading, setLoading] = useState(false);
   const [activeForm, setActiveForm] = useState<"Log in" | "Register">("Log in");
   const [errorStatus, setErrorStatus] = useState<number | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorReason, setErrorReason] = useState<string | null>(null)
 
   const {
     register,
@@ -45,6 +46,8 @@ export default function Auth() {
         setError(true)
         setErrorStatus(data.code)
         setErrorMessage(data.msg)
+        setErrorReason(Object.values(data.reason).toString())
+        // console.log(errorMessage)
       }
       else{
         localStorage.setItem('UserId', data.userId)
@@ -73,7 +76,7 @@ export default function Auth() {
   
   return (
     <div className="grid h-screen grid-cols-8 text-white">
-      {error ? <ErrorModal close={setError} message={errorMessage} status={errorStatus} />: null}
+      {error ? <ErrorModal state={error} close={setError} message={errorMessage} status={errorStatus} reason={errorReason} />: null}
       {/* left part */}
       <div className="hidden col-span-3 p-4 text-gray-800 bg-yellow-500 md:grid place-items-center">
         <h1 className="mb-5 text-3xl font-semibold">

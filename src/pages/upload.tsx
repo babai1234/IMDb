@@ -26,14 +26,16 @@ const upload = () => {
     const response = await fetch("http://localhost:8082/movie/upload",{
       method: "POST",
       headers: {
-        "Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbnVzZXIyMTM1MyIsInBhc3N3b3JkIjoiJDJhJDEwJEVLUjFZcS41cGVYOENBY2JZekFtWE9GVmVocW5oUVJTZmVuS2dhdTNCellzYUNZc0ZEVXcuIiwiYWN0aXZlIjp0cnVlLCJleHAiOjE2Mjg0MzEwNTIsImlhdCI6MTYyODQxMTA1Mn0.3b_wNLK2a6toMffeEBSZfWIp_4AzfK9ErOyWJ1xpA6A",
-        "u_id": "adminuser21353"
+        "Authorization": localStorage.getItem('Token'),
+        "u_id": localStorage.getItem('UserId')
       },
       body: formData
     })
-    const res = await response.json()
-    console.log(res)
-    router.push(`movie/${res.id}`)
+    if(response.status === 201){
+      const res = await response.json()
+      console.log(res)
+      router.push(`movie/${res.id}`)
+    }
   };
 
   return (

@@ -5,37 +5,45 @@ import Video from "@components/Video";
 import Review from "@components/Review";
 import StarRating from "@components/StarRating";
 import Input from '@components/Input';
-import { IMovie } from "@libs/types";
+import { IMovie, IMovieReview } from "@libs/types";
 import { BiPlus } from 'react-icons/bi';
-import { useRouter } from 'next/router';
-
-// "u_id": localStorage.getItem("UserId"),
-// "Authorization": localStorage.getItem("Token")
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const {params} = context
-    const res = await fetch('http://localhost:8082/movie/info?movieId='+params.movie_id,{
-        method:"GET",
-        headers:{
-            "Content-Type": "application/JSON",
-        }
-    })
-    const movie: IMovie = await res.json()
+    const {movie_id} = context.params
+    const [Movie, Review] = await Promise.all([
+        fetch('http://localhost:8082/movie/info?movieId='+movie_id,{
+            method:"GET",
+            headers:{
+                "u_id": localStorage.getItem("UserId"),
+                "Authorization": localStorage.getItem("Token")
+            }
+        })
+            .then(res => res.json())
+            .catch(err => console.log(err.message)),
+        fetch('http://localhost:8082/movie/review?movieId='+movie_id,{
+            method:"GET",
+            headers:{
+                "u_id": localStorage.getItem("UserId"),
+                "Authorization": localStorage.getItem("Token")
+            }
+        })
+            .then(res => res.json())
+            .catch(err => console.log(err.message))
+    ])
     
     return {
       props: {
-        movie
+        movie: Movie.movieInfo,
+        review: Review.result
       },
     }
   }
 
-const trailer: NextPage<{movie: IMovie}> = ({movie}) => {
+const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, review}) => {
 
-    const router = useRouter()
-    const {movie_id} = router.query
 
     const addToWishListHandler = async() => {
-        const response = await fetch(`http://localhost:8082/user/wishlist?movieId=${movie_id}`,{
+        const response = await fetch(`http://localhost:8082/user/wishlist?movieId=${movie.id}`,{
             method: "PUT",
             headers:{
                 "Authorization": localStorage.getItem("Token"),
@@ -47,7 +55,7 @@ const trailer: NextPage<{movie: IMovie}> = ({movie}) => {
         console.log(res);
     }
     const addToWatchListHandler = async() => {
-        const response = await fetch(`http://localhost:8082/user/watchlist?movieId=${movie_id}`,{
+        const response = await fetch(`http://localhost:8082/user/watchlist?movieId=${movie.id}`,{
             method: "PUT",
             headers:{
                 "Authorization": localStorage.getItem("Token"),
@@ -57,6 +65,20 @@ const trailer: NextPage<{movie: IMovie}> = ({movie}) => {
         console.log(response);
         const res = await response.json()
         console.log(res);
+    }
+    const postReviewHandler = async(review: string) => {
+        const response = await fetch(`http://localhost:8082/movie/review?movieId=${movie.id}`,{
+            method: "POST",
+            headers: {
+                "Content-Type": "Application/JSON",
+                "Authorization": localStorage.getItem("Token"),
+                "u_id": localStorage.getItem("UserID")
+            },
+            body: JSON.stringify({content: review})
+        })
+        console.log(response)
+        const res = await response.json()
+        console.log(res)
     }
 
     console.log(movie);
@@ -94,10 +116,10 @@ const trailer: NextPage<{movie: IMovie}> = ({movie}) => {
                     </div>
                     <div className="text-gray-50 py-4">
                         <label className="font-semibold text-3xl">Reviews<span className="text-lg">({movie.noOfReviews})</span> </label>
-                        <Input />
-                        {/* {movie.review.map(review => (
+                        <Input postData={postReviewHandler}/>
+                        {review.map(review => (
                             <Review review={review} key={review.id} />
-                        ))} */}
+                        ))}
                     </div>
                 </div>
                 <div className="w-2/5 ml-4 flex-col lg:block hidden">
