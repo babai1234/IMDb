@@ -8,7 +8,7 @@ import Input from "@components/Input";
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const {review_id} = context.params
     
-    const  Response = await fetch('http://localhost:3001/review/'+review_id)
+    const  Response = await fetch('http://localhost:8082/movie/review/?reviewId='+review_id)
     const review = await Response.json()
 
     return{
