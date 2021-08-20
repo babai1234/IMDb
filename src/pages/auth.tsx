@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import AuthInput from "@components/AuthInput";
 import { registrationSchema, loginSchema } from "@libs/validationSchema";
 import ErrorModal from "@components/ErrorModal";
+import Cookies from 'js-cookie'
 
 export default function Auth() {
   const { push } = useRouter();
@@ -52,6 +53,9 @@ export default function Auth() {
       else{
         localStorage.setItem('UserId', data.userId)
         localStorage.setItem('Token', data.token)
+        Cookies.set('UserId', data.userId,{expires: 2})
+        Cookies.set('Token', data.token, {expires: 2})
+        Cookies.set('random', 'aaaa  bbbbb', {expires: 2})
         console.log("UserId: "+data.userId);
         console.log("Token: "+data.token);
         push("/");

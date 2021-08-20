@@ -31,10 +31,14 @@ const upload = () => {
       },
       body: formData
     })
+    console.log(response);
+    
+    const res = await response.json()
     if(response.status === 201){
-      const res = await response.json()
+      router.push(`Movie/${res.id}`)
+    }
+    else{
       console.log(res)
-      router.push(`movie/${res.id}`)
     }
   };
 

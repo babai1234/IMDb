@@ -1,31 +1,35 @@
 import {AiFillStar} from 'react-icons/ai'
-import { GetServerSideProps, NextPage } from 'next'
 
 import Video from "@components/Video";
 import Review from "@components/Review";
 import StarRating from "@components/StarRating";
 import Input from '@components/Input';
 import { IMovie, IMovieReview } from "@libs/types";
-import { BiPlus } from 'react-icons/bi';
+import { BiMinus, BiPlus } from 'react-icons/bi';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { GetServerSideProps, NextPage } from 'next';
+import Cookies from 'js-cookie';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const {movie_id} = context.params
+    console.log(Cookies.get("UserId"),Cookies.get("Token"))
     const [Movie, Review] = await Promise.all([
         fetch('http://localhost:8082/movie/info?movieId='+movie_id,{
             method:"GET",
-            headers:{
-                "u_id": localStorage.getItem("UserId"),
-                "Authorization": localStorage.getItem("Token")
-            }
+            // headers:{
+            //     "u_id": Cookies.get("UserId"),
+            //     "Authorization": Cookies.get("Token")
+            // }
         })
             .then(res => res.json())
             .catch(err => console.log(err.message)),
         fetch('http://localhost:8082/movie/review?movieId='+movie_id,{
             method:"GET",
-            headers:{
-                "u_id": localStorage.getItem("UserId"),
-                "Authorization": localStorage.getItem("Token")
-            }
+            // headers:{
+            //     "u_id": localStorage.getItem("UserId"),
+            //     "Authorization": localStorage.getItem("Token")
+            // }
         })
             .then(res => res.json())
             .catch(err => console.log(err.message))
@@ -41,7 +45,41 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, review}) => {
 
-
+    // const {movie_id} = useRouter().query
+    // const [movie, setMovie] = useState<IMovie>(null)
+    // const [review, setReview] = useState<IMovieReview[]>(null)
+    // const [loading, setLoading] = useState(false)
+    // console.log(movie_id)
+    // useEffect(() => {
+    //     const Movie = async() => {
+    //         setLoading(true)
+    //         const MovieResponse = await fetch('http://localhost:8082/movie/info?movieId='+movie_id,{
+    //             method:"GET",
+    //             headers:{
+    //                 "u_id": localStorage.getItem("UserId"),
+    //                 "Authorization": localStorage.getItem("Token")
+    //             }
+    //         })
+    //         const ReviewResponse = await fetch('http://localhost:8082/movie/review?movieId='+movie_id,{
+    //             method:"GET",
+    //             headers:{
+    //                 "u_id": localStorage.getItem("UserId"),
+    //                 "Authorization": localStorage.getItem("Token")
+    //             }
+    //         })
+    //         const Movie = await MovieResponse.json()
+    //         console.log(Movie)
+    //         setMovie(Movie.movieInfo)
+    //         const Review = await ReviewResponse.json()
+    //         console.log(Review)
+    //         setReview(Review.result)
+    //         console.log(loading)
+    //     }
+    //     Movie()
+    //     setLoading(false)
+    // }, [])
+    const [wishList, setWishList] = useState(movie.isWishListed)
+    const [watchList, setWatchList] = useState(movie.isWatchListed)
     const addToWishListHandler = async() => {
         const response = await fetch(`http://localhost:8082/user/wishlist?movieId=${movie.id}`,{
             method: "PUT",
@@ -53,6 +91,7 @@ const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, revi
         console.log(response);
         const res = await response.json()
         console.log(res);
+        setWishList(res.status)
     }
     const addToWatchListHandler = async() => {
         const response = await fetch(`http://localhost:8082/user/watchlist?movieId=${movie.id}`,{
@@ -65,26 +104,30 @@ const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, revi
         console.log(response);
         const res = await response.json()
         console.log(res);
+        setWatchList(res.status)
     }
     const postReviewHandler = async(review: string) => {
+        console.log(review)
+        console.log(localStorage.getItem("UserId"))
         const response = await fetch(`http://localhost:8082/movie/review?movieId=${movie.id}`,{
             method: "POST",
             headers: {
-                "Content-Type": "Application/JSON",
+                "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("Token"),
                 "u_id": localStorage.getItem("UserID")
             },
-            body: JSON.stringify({content: review})
+            body: JSON.stringify({"content": review})
         })
-        console.log(response)
+        // console.log(response)
         const res = await response.json()
         console.log(res)
     }
-
-    console.log(movie);
+    console.log(movie)
     
     return (
         <div>
+        {/* { */}
+            {/* !loading ? null : */}
             <div className="py-7 flex m-auto w-10/12 justify-between">
                 <div className="mr-4">
                     <div className="mb-5">
@@ -101,12 +144,14 @@ const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, revi
                             </span>
                             <span className="mr-4">
                                 <button onClick={addToWatchListHandler} className="bg-blue-600 text-gray-50 outline-none rounded-md py-1 px-5 flex">
-                                    <BiPlus className="mt-1" /> WatchList
+                                    {!watchList ? <BiPlus className="mt-1" /> : <BiMinus className="mt-1" />}
+                                    WatchList  
                                 </button>
                             </span>
                             <span>
                                 <button onClick={addToWishListHandler} className="bg-blue-600 text-gray-50 outline-none rounded-md py-1 px-5 flex">
-                                    <BiPlus className="mt-1" /> WishList
+                                    {!wishList ? <BiPlus className="mt-1" /> : <BiMinus className="mt-1" />} 
+                                    WishList
                                 </button>
                             </span>
                         </p>
@@ -127,6 +172,7 @@ const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, revi
                     <p className="text-white">{movie.description}</p>
                 </div>
             </div>
+        {/* } */}
         </div>
     );
 }

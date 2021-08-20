@@ -10,6 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     
     const  Response = await fetch('http://localhost:8082/movie/review/?reviewId='+review_id)
     const review = await Response.json()
+    console.log(review)
 
     return{
         props:{

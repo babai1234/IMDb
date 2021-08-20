@@ -55,7 +55,9 @@ export type IMovie = {
   noOfRatings: number,
   avgRating: number,
   genres: string,
-  userRating: number
+  userRating: number,
+  isWishListed: boolean,
+  isWatchListed: boolean
 }
 
 export type suggestion = {

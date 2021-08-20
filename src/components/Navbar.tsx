@@ -24,8 +24,6 @@ const Navbar = () => {
   	const displayUserHandler = () => {
 		
 		if(localStorage.getItem("Token").length > 0){
-			console.log("Authenticated: true");
-			
 			setIsAuthenticated(true)
 		}
   	}
