@@ -4,82 +4,40 @@ import Video from "@components/Video";
 import Review from "@components/Review";
 import StarRating from "@components/StarRating";
 import Input from '@components/Input';
-import { IMovie, IMovieReview } from "@libs/types";
+import { IMovie, IMovieInfo, IUserInfo } from "@libs/types";
 import { BiMinus, BiPlus } from 'react-icons/bi';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
-import Cookies from 'js-cookie';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const {movie_id} = context.params
-    console.log(Cookies.get("UserId"),Cookies.get("Token"))
-    const [Movie, Review] = await Promise.all([
-        fetch('http://localhost:8082/movie/info?movieId='+movie_id,{
-            method:"GET",
-            // headers:{
-            //     "u_id": Cookies.get("UserId"),
-            //     "Authorization": Cookies.get("Token")
-            // }
-        })
-            .then(res => res.json())
-            .catch(err => console.log(err.message)),
-        fetch('http://localhost:8082/movie/review?movieId='+movie_id,{
-            method:"GET",
-            // headers:{
-            //     "u_id": localStorage.getItem("UserId"),
-            //     "Authorization": localStorage.getItem("Token")
-            // }
-        })
-            .then(res => res.json())
-            .catch(err => console.log(err.message))
-    ])
+export const getServerSideProps: GetServerSideProps = async({req, query}) => {
+    const {movie_id} = query
+    console.log(req.cookies.Token, req.cookies.UserId)
+    const Response = await fetch('http://localhost:8082/movie/info?movieId='+movie_id,{
+        method: "GET",
+        headers: {
+            "u_id": req.cookies.UserId,
+            "Authorization": req.cookies.Token
+        }
+    })
+    console.log(Response)
+    let Movie: IMovie = null
+    if(Response.ok){
+        Movie = await Response.json()
+    }
     
     return {
-      props: {
-        movie: Movie.movieInfo,
-        review: Review.result
-      },
+        props: {
+            movie: Movie.movieInfo,
+            user: Movie.userInfo
+        }
     }
-  }
+}
 
-const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, review}) => {
+const trailer: NextPage<{movie: IMovieInfo, user: IUserInfo}> = ({movie, user}) => {
 
-    // const {movie_id} = useRouter().query
-    // const [movie, setMovie] = useState<IMovie>(null)
-    // const [review, setReview] = useState<IMovieReview[]>(null)
-    // const [loading, setLoading] = useState(false)
-    // console.log(movie_id)
-    // useEffect(() => {
-    //     const Movie = async() => {
-    //         setLoading(true)
-    //         const MovieResponse = await fetch('http://localhost:8082/movie/info?movieId='+movie_id,{
-    //             method:"GET",
-    //             headers:{
-    //                 "u_id": localStorage.getItem("UserId"),
-    //                 "Authorization": localStorage.getItem("Token")
-    //             }
-    //         })
-    //         const ReviewResponse = await fetch('http://localhost:8082/movie/review?movieId='+movie_id,{
-    //             method:"GET",
-    //             headers:{
-    //                 "u_id": localStorage.getItem("UserId"),
-    //                 "Authorization": localStorage.getItem("Token")
-    //             }
-    //         })
-    //         const Movie = await MovieResponse.json()
-    //         console.log(Movie)
-    //         setMovie(Movie.movieInfo)
-    //         const Review = await ReviewResponse.json()
-    //         console.log(Review)
-    //         setReview(Review.result)
-    //         console.log(loading)
-    //     }
-    //     Movie()
-    //     setLoading(false)
-    // }, [])
-    const [wishList, setWishList] = useState(movie.isWishListed)
-    const [watchList, setWatchList] = useState(movie.isWatchListed)
+    const [wishList, setWishList] = useState(movie.wishListed)
+    const [watchList, setWatchList] = useState(movie.watchListed)
+    const [reviewList, setReviewList] = useState(movie.reviewList.result)
     const addToWishListHandler = async() => {
         const response = await fetch(`http://localhost:8082/user/wishlist?movieId=${movie.id}`,{
             method: "PUT",
@@ -114,11 +72,10 @@ const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, revi
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("Token"),
-                "u_id": localStorage.getItem("UserID")
+                "u_id": localStorage.getItem("UserId")
             },
             body: JSON.stringify({"content": review})
         })
-        // console.log(response)
         const res = await response.json()
         console.log(res)
     }
@@ -126,8 +83,6 @@ const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, revi
     
     return (
         <div>
-        {/* { */}
-            {/* !loading ? null : */}
             <div className="py-7 flex m-auto w-10/12 justify-between">
                 <div className="mr-4">
                     <div className="mb-5">
@@ -162,9 +117,13 @@ const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, revi
                     <div className="text-gray-50 py-4">
                         <label className="font-semibold text-3xl">Reviews<span className="text-lg">({movie.noOfReviews})</span> </label>
                         <Input postData={postReviewHandler}/>
-                        {review.map(review => (
-                            <Review review={review} key={review.id} />
-                        ))}
+                        {
+                            (reviewList.length == 0) ? <p className="text-center mt-4">No reviews uploaded yet</p>
+                            :
+                            reviewList.map(review => (
+                                <Review review={review} key={review.id} />
+                            ))
+                        }
                     </div>
                 </div>
                 <div className="w-2/5 ml-4 flex-col lg:block hidden">
@@ -172,7 +131,6 @@ const trailer: NextPage<{movie: IMovie, review: IMovieReview[]}> = ({movie, revi
                     <p className="text-white">{movie.description}</p>
                 </div>
             </div>
-        {/* } */}
         </div>
     );
 }

@@ -26,7 +26,7 @@ const Reply: FunctionComponent<{reply: IReviewReply}> = ({reply}) => {
             setLike(like - 1)
             reply.userReact=false
         }
-        const response = await fetch('http://localhost/8082/movie/reply/react?replyId='+reply.id,{
+        const response = await fetch('http://localhost:8082/movie/reply/react?replyId='+reply.id,{
             method:'PUT',
             headers:{
                 "u_id": localStorage.getItem('UserId'),
@@ -40,7 +40,7 @@ const Reply: FunctionComponent<{reply: IReviewReply}> = ({reply}) => {
         <div className="py-4 flex text-gray-50">
             <div className="flex-shrink-0">
                 <Image 
-                    src={reply.userObject.profilePictureLink} 
+                    src="/avatar.png"
                     width="40" 
                     height="40" 
                     className="rounded-full"

@@ -7,7 +7,7 @@ const StarRating = ({userRating}) => {
     const [hover, setHover] = useState(null)
     const router = useRouter()
     useEffect(() => {
-        console.log(userRating);
+        // console.log(userRating);
         setRating(userRating)
     }, [])
     

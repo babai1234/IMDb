@@ -1,7 +1,8 @@
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/router";
 
 import DropZoneComponent from "@components/DropZoneComponent";
-import { useRouter } from "next/router";
+import {CgSpinnerAlt} from 'react-icons/cg'
 
 const upload = () => {
   const [title, setTitle] = useState("");
@@ -10,9 +11,11 @@ const upload = () => {
   const [gener, setGener] = useState("");
   const [trailer, setTrailer] = useState(null);
   const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
   const postMovieHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(true)
     const data = {
       title: title,
       poster: poster,
@@ -34,6 +37,7 @@ const upload = () => {
     console.log(response);
     
     const res = await response.json()
+    setLoading(false)
     if(response.status === 201){
       router.push(`Movie/${res.id}`)
     }
@@ -97,7 +101,7 @@ const upload = () => {
             type="submit"
             className="py-2 bg-blue-600 rounded-md outline-none text-gray-50"
           >
-            Upload
+            {loading ? <CgSpinnerAlt className="m-auto"/> : <span>Upload</span> }
           </button>
         </div>
         <div className="flex flex-col col-span-2 md:col-span-1">

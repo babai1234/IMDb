@@ -42,8 +42,7 @@ export type IReviewReply = {
   noOfLikes: number
   userReact: boolean
 }
-
-export type IMovie = {
+export type IMovieInfo = {
   id: string,
   title: string,
   description: string,
@@ -56,8 +55,26 @@ export type IMovie = {
   avgRating: number,
   genres: string,
   userRating: number,
-  isWishListed: boolean,
-  isWatchListed: boolean
+  reviewList: {
+    id: number,
+    size: number,
+    length: number,
+    result: IReview[]
+  }
+  wishListed: boolean,
+  watchListed: boolean
+}
+
+export type IUserInfo = {
+  id: string,
+  userId: string,
+  profilePictureLink: string,
+  admin: boolean
+}
+
+export type IMovie = {
+  userInfo: IUserInfo,
+  movieInfo: IMovieInfo
 }
 
 export type suggestion = {

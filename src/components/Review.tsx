@@ -3,13 +3,13 @@ import {HiOutlineThumbUp, HiThumbUp} from 'react-icons/hi'
 import {FunctionComponent, useState} from 'react'
 import { useRouter } from 'next/router';
 
-import { IMovieReview } from '@libs/types';
+import { IMovieReview, IReview } from '@libs/types';
 
-const Review: FunctionComponent<{review: IMovieReview}> = ({review}) => {
+const Review: FunctionComponent<{review: IReview}> = ({review}) => {
 
     const [like, setLike] = useState(review.noOfLikes)
     const router = useRouter()
-    
+    console.log(review.userReact)
     const reactStateHandler = async(type: string) => {
         if(type === 'Like'){
             setLike(like + 1)
@@ -19,7 +19,7 @@ const Review: FunctionComponent<{review: IMovieReview}> = ({review}) => {
             setLike(like - 1)
             review.userReact=false
         }
-        const response = await fetch('http://localhost/8082/movie/review/react?reviewId='+review.id,{
+        const response = await fetch('http://localhost:8082/movie/review/react?reviewId='+review.id,{
             method:'PUT',
             headers:{
                 "u_id": localStorage.getItem('UserId'),
@@ -50,7 +50,7 @@ const Review: FunctionComponent<{review: IMovieReview}> = ({review}) => {
     return (
         <div className="py-4 flex text-gray-50">
             <div className="flex-shrink-0">
-                <Image src={review.userObject.profilePictureLink} width="40" height="40" className="rounded-full"/>
+                <Image src="/avatar.png" width="40" height="40" className="rounded-full"/>
             </div>
             <div className="flex flex-col">
                 <p className="font-bold text-l ml-4">{review.userObject.id}</p>

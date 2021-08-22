@@ -4,31 +4,38 @@ import { GetServerSideProps, NextPage } from "next";
 import Reply from "@components/Reply";
 import Review from "@components/Review";
 import Input from "@components/Input";
+import { useState } from "react";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const {review_id} = context.params
+export const getServerSideProps: GetServerSideProps = async ({req, query}) => {
+    const {review_id} = query
     
-    const  Response = await fetch('http://localhost:8082/movie/review/?reviewId='+review_id)
-    const review = await Response.json()
-    console.log(review)
+    const  Response = await fetch('http://localhost:8082/movie/review/?reviewId='+review_id,{
+        method: "GET",
+        headers: {
+            "u_id": req.cookies.UserId,
+            "Authorization": req.cookies.Token
+        }
+    })
+    const Review = await Response.json()
+    console.log(Review)
 
     return{
         props:{
-            review_res: review
+            review: Review.review
         }
     }
 }
 
-const Review_id: NextPage<{review_res: IReview}> = ({ review_res }) => {
+const Review_id: NextPage<{review: IReview}> = ({ review }) => {
 
-    const replies = review_res.replyList.result
+    const [replies, setReplies] = useState(review.replyList.result)
     const postReplyHandler = async(reply: string) => {
-        const response = await fetch(`http://localhost:8082/movie/reply?reviewId=${review_res.id}`,{
+        const response = await fetch(`http://localhost:8082/movie/reply?reviewId=${review.id}`,{
             method: "POST",
             headers: {
                 "Content-Type": "Application/JSON",
                 "Authorization": localStorage.getItem("Token"),
-                "u_id": localStorage.getItem("UserID")
+                "u_id": localStorage.getItem("UserId")
             },
             body: JSON.stringify({content: reply})
         })
@@ -40,7 +47,7 @@ const Review_id: NextPage<{review_res: IReview}> = ({ review_res }) => {
     return (
         <div className="max-h-full flex flex-col">
             <div className="mx-auto w-8/12">
-                <Review review={review_res} key={review_res.id} />
+                <Review review={review} key={review.id} />
             </div>
             <div className="mx-auto pl-14 w-8/12">
                 <Input postData={postReplyHandler} />
